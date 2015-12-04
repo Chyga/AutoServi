@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./principal.xhtml">
+
+            <ui:define name="content">
+
+
+                <h:form>
+                    <h:panelGrid columns="2" styleClass="tabla-proveedor-nuevo-contenedor">
+                        <p:graphicImage library="imagenes" name="proveedor_nuevo_1.png"/>
+                        
+                        <p:panelGrid columns="3"
+                                     styleClass="tabla-proveedor-nuevo">
+                            <f:facet name="header">
+                                <p:outputLabel value="Nuevo Provedor"/>
+                            </f:facet>
+                            
+                            <p:outputLabel value="Nombre" for="input-nombre"/>
+                            <p:inputText placeholder="Nombre" id="input-nombre"/>
+                            <p:message for="input-nombre" display="icon"/>
+
+                            <p:outputLabel value="Direccion" for="input-direccion"/>
+                            <p:inputText placeholder="Direccion" id="input-direccion"/>
+                            <p:message for="input-direccion" display="icon"/>
+
+                            <p:outputLabel value="Telefono" for="input-telefono"/>
+                            <p:inputText placeholder="Telefono" id="input-telefono"/>
+                            <p:message for="input-telefono" display="icon"/>
+
+                            <p:outputLabel value="Email" for="input-email"/>
+                            <p:inputText placeholder="Email" id="input-email"/>
+                            <p:message for="input-email" display="icon"/>
+
+                            <p:outputLabel value="Estado" for="input-estado"/>
+                            <p:selectOneMenu id="input-estado">
+                                <f:selectItem noSelectionOption="true" 
+                                              itemLabel="Seleccione" 
+                                              itemValue="#{null}"/>
+
+                                <f:selectItem itemLabel="Activo"
+                                              itemValue="A"/>
+                                <f:selectItem itemLabel="Inactivo"
+                                              itemValue="I"/>
+                            </p:selectOneMenu>
+                            <p:message for="input-estado" display="icon"/>
+                            <f:facet name="footer">
+                                <p:commandButton value="Aceptar"
+                                                 icon="ui-icono-registrar"/>
+                            </f:facet>
+                        </p:panelGrid>
+                    </h:panelGrid>
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

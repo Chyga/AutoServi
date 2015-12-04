@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    <h:body>
+
+        <h:form>
+
+            <p:menubar style="margin-top: 10px;" styleClass="menu-sistema">
+
+                <p:submenu label="Archivo" 
+                           icon="ui-icono-menu-archivo">
+
+                    <p:menuitem value="Inicio" 
+                                url="principal.jsf" 
+                                icon="ui-icono-submenu-inicio"/>
+
+                    <p:menuitem value="Cambiar Clave" 
+                                onclick="PF('wvCambioClave').show();" 
+                                icon="ui-icono-submenu-clave"/>
+
+                   
+                </p:submenu>
+                
+                <p:submenu label="Usuarios"
+                           icon="ui-icono-menu-usuario">
+                               
+                    <p:menuitem url="usuario.jsf"
+                                value="Adicionar"
+                                title="Añade un usuario del sistema"
+                                icon="ui-icono-adicionar" />
+                    <p:menuitem value="Consulta Usuario"
+                                url="usuario_consulta.jsf" 
+                                icon="ui-icono-consultar"
+                                rendered="#{loginBean.tipousuario.chkusuario !=0}"/>
+                    <p:menuitem value="Tipo Usuario"
+                                url="usuario_tipo.jsf"  
+                                rendered="#{loginBean.tipousuario.chkusuario !=0}" 
+                                icon="ui-icono-submenu-roles"/>
+                </p:submenu>
+
+                <p:submenu label="Articulos" 
+                           icon="ui-icono-menu-articulo" 
+                           rendered="#{loginBean.tipousuario.chkcompra !=0 || loginBean.tipousuario.chkventa !=0}">
+
+                    <p:menuitem value="Adicionar" 
+                                title="Añade un articulo nuevo para el negocio"
+                                url="articulo.jsf" 
+                                icon="ui-icono-adicionar"
+                                rendered="#{loginBean.tipousuario.chkcompra !=0}"/>
+
+                    <p:menuitem value="Actualiza Precio y Costos"  
+                                rendered="#{loginBean.tipousuario.chkcompra ==2}"/>
+
+                    <p:menuitem value="Consultar Articulo"
+                                url="articulo_consulta.jsf"
+                                icon="ui-icono-consultar"
+                                title="Lista de articulos con las operaciones de borrar y modificar"/>
+                    <p:menuitem value="Reportes" icon="ui-icono-submenu-reportes"/>
+
+                    <p:submenu label="Inventario"
+                               rendered="#{loginBean.tipousuario.chkinventario != 0 }">
+
+                        <p:menuitem value="Generar Inventario"/>
+
+                        <p:menuitem value="Aprobar Inventario" url="venta.xhtml"/>
+
+                        <p:menuitem value="Reportes" 
+                                    icon="ui-icono-submenu-reportes"/>
+
+                    </p:submenu>
+                </p:submenu>
+                <p:submenu label="Clientes" icon="ui-icono-menu-cliente">
+
+                    <p:menuitem value="Adicionar" 
+                                icon="ui-icono-adicionar"
+                                url="cliente.jsf"/>
+                    <p:menuitem value="Consultar Cliente"
+                                icon="ui-icono-consultar"/>
+                    <p:menuitem value="Tipo de Cliente"
+                                icon="ui-icono-submenu-usuarios"/>
+                    <p:menuitem value="Reportes" icon="ui-icono-submenu-reportes"/>
+
+                </p:submenu>
+
+                <p:submenu label="Proveedores" icon="ui-icono-menu-proveedores">
+
+                    <p:menuitem value="Adicionar" 
+                                icon="ui-icono-adicionar"
+                                url="proveedor.jsf"/>
+                    <p:menuitem value="Consultar Proveedores"
+                                icon="ui-icono-consultar"
+                                />
+                    <p:menuitem value="Reportes" icon="ui-icono-submenu-reportes"/>
+
+                </p:submenu>
+
+                <p:submenu label="Ventas" icon="ui-icono-menu-venta">
+
+                    <p:menuitem value="Iniciar Venta"
+                                icon="ui-icono-submenu-iniciar-venta"/>
+                    <p:menuitem value="Consultar Ventas"
+                                icon="ui-icono-consultar"/>
+                    <p:menuitem value="Comprobantes Emitidos"/>
+                    <p:menuitem value="Presupuestos"/>
+                    <p:menuitem value="Reportes" icon="ui-icono-submenu-reportes"/>
+
+                </p:submenu>
+                <p:submenu label="Compras" icon="ui-icono-menu-compra">
+
+                    <p:menuitem value="Ordenes de compras"/>
+                    <p:menuitem value="Facturas de Compras" url="venta.xhtml"/>
+                    <p:menuitem value="Reportes" 
+                                icon="ui-icono-submenu-reportes"/>
+
+                </p:submenu>
+                <p:submenu label="Caja" icon="ui-icono-menu-caja" rendered="#{loginBean.tipousuario.chkcaja != 0}">
+
+                    <p:menuitem value="Iniciar Caja"/>
+                    <p:menuitem value="Finalizar Caja"/>
+                    <p:menuitem value="Reportes"
+                                icon="ui-icono-submenu-reportes"/>
+                    <p:menuitem value="Saldo Actual"/>
+
+                </p:submenu>
+
+                <f:facet name="options">
+                    <p:outputLabel 
+                        value=" #{(loginBean == null) ? 'Hola usuario' : 'Bienvenido,'.concat(loginBean.user.nombre)}"
+                        styleClass="bienvenido-usuario"/>
+                    <p:inputText size="15" style="margin-right:10px"/>
+                    <p:commandButton icon="ui-icono-logout"
+                                     value="#{loginBean.user.codigo}" 
+                                     action="#{loginBean.logout()}"
+                                     oncomplete="logout(xhr, status, args)" />
+
+                </f:facet>
+            </p:menubar>
+        </h:form>
+
+
+        <p:dialog header="Usuario"
+                  widgetVar="wvCambioClave" 
+                  id="dgcambioclaveusuario">
+            <h:form>
+                <p:panel header="Cambio de Clave">
+                    <p:panelGrid columns="2"
+                                 styleClass="panel-cambio-clave">
+                        <p:outputLabel value="Usuario:"/>
+                        <p:outputLabel value="#{loginBean.user.codigo}"/>
+
+                        <p:outputLabel for="txtclave" value="Clave"/>
+                        <p:password id="txtclave" value="#{loginBean.user.clave}"
+                                    required="true"
+                                    validatorMessage="Los campos no coinciden"
+                                    label="clave"
+                                    requiredMessage="Proporcione un valor en clave"
+                                    match="txtclaveconfirmacion"/>
+
+                        <p:outputLabel for="txtclaveconfirmacion" value="Confirmacón"/>
+                        <p:password 
+                            value="#{loginBean.claveconfirmacion}"
+                            validatorMessage="campo"
+                            label="clave"
+                            requiredMessage="Valor en confirmar es requerido"
+                            id="txtclaveconfirmacion" 
+                            required="true"/>
+
+                        <p:commandButton value="Aceptar"
+                                         actionListener="#{loginBean.cambioclave()}" 
+                                         resetValues="true"
+                                         update=":msg" />
+                        <p:commandButton value="Cancelar" 
+                                         immediate="true"  
+                                         oncomplete="PF('wvCambioClave').hide();" 
+                                         update=":msg"/>
+
+                    </p:panelGrid>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+        <script type="text/javascript">
+            //<![CDATA[   
+            function logout(xhr, status, args) {
+                setTimeout(function () {
+                    window.location = 'login.jsf';
+                }, 500);
+            } //]]> 
+        </script>
+    </h:body>
+</ui:composition>
+

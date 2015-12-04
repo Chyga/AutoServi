@@ -1,0 +1,96 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+
+        <title>Login</title>
+
+        <h:outputStylesheet library="css" name="login.css" rendererType="text/css"/>
+    </h:head>
+    <h:body>
+        <div id="contenido">
+
+            <div id="cabecera-login">
+
+                <p:graphicImage library="imagenes" name="Autorepuestos_1.png" styleClass="dim"/>
+                <div id="borde-botom"/>
+
+            </div>
+
+                <div id="borde-principal">
+                <div id="login-text-top">
+                    Login
+                </div>
+
+
+                <p:ajaxStatus style="position:fixed; top: 155px; right: 50px; width: 34; height: 34">
+
+                    <f:facet name="start">
+                        <p:graphicImage library="imagenes" name="ajax_loader_gray_32.gif"/>
+                    </f:facet>
+
+                    <f:facet name="complete">
+                        <p:outputLabel value=""/>
+                    </f:facet>
+
+                </p:ajaxStatus>
+
+                <h:form>
+                    <p:growl id="msg" autoUpdate ="true" life="5000" />
+                    <p:panelGrid>
+                        
+                       <p:row>
+                            <p:column rowspan="4">
+                                <p:graphicImage library="imagenes" name="password.png"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="Usuario"/>
+                            </p:column>
+                            <p:column>
+                                <p:inputText id="username" 
+                                             value="#{loginBean.user.codigo}" 
+                                             required="true" 
+                                             label="Usuario" 
+                                             requiredMessage="Ingrese un valor en Usuario"/>
+                            </p:column>
+                            <p:column>
+                                <p:message for="username" display="icon" id="message_user"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Clave"/> 
+                            </p:column>
+                            <p:column>
+                                <p:password id="password"  
+                                            feedback="false" 
+                                            value="#{loginBean.user.clave}" 
+                                            required="true" 
+                                            requiredMessage="Ingrese un valor en clave"/>
+                            </p:column>
+                            <p:column>
+                                <p:message for="password" display="icon" id="message_clave"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column colspan="2">
+                                <p:commandButton id="bottomlogin" 
+                                                 action="#{loginBean.loginSistema()}" 
+                                                 value="Ingresar" 
+                                                 update="msg message_user message_clave"
+                                                 style="margin-left: 67%"/>
+                            </p:column>
+
+                        </p:row>
+                            
+                    </p:panelGrid>
+
+                </h:form>
+
+            </div>
+        </div>
+        <ui:include src="/plantilla/piepagina.xhtml"/>
+    </h:body> 
+</html>

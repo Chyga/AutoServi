@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <h:outputStylesheet library="css" name="estilo.css"/>
+                <title>SiGeRes</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <p:growl id="msg" showDetail="true" autoUpdate="true" life="3000" />
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" id="north">
+                    <div id="cabecera-login">
+                        <p:graphicImage library="imagenes" name="Autorepuestos_1.png" styleClass="dim"/>
+                        <div id="borde-botom">
+
+                        </div>
+                    </div>
+                    <ui:include  src="/plantilla/menubar.xhtml"/>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="30" closable="true" collapsible="true">
+                    <ui:include src="/plantilla/piepagina.xhtml"/>
+                </p:layoutUnit>
+                <!--
+                <p:layoutUnit position="west" size="175" collapsible="true">
+                </p:layoutUnit>
+                -->
+                <p:layoutUnit position="center">
+                    <p:ajaxStatus >
+                        <f:facet name="start">
+                            <p:graphicImage library="imagenes" name="ajax_loader_gray_32.gif" styleClass="ajax-status-estilo"/>
+                        </f:facet>
+                        <f:facet name="complete">
+                            <p:outputLabel value=""/>
+                        </f:facet>
+                    </p:ajaxStatus>
+                <ui:insert name="content"></ui:insert>
+
+                </p:layoutUnit>
+
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>
+

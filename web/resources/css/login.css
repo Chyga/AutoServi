@@ -1,0 +1,79 @@
+body{
+    background-color: #ffffff;
+    margin-top: 1%;
+
+}
+
+.conteiner{
+    font-size:  85%;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+
+}
+
+#contenido{
+    width: 100%;
+    height: 650px;
+    background: transparent;
+    border-radius: 10px;
+    border-bottom: 3px solid #036fab
+}
+
+
+.ui-state-default .icom-login{
+    background-image: url(../imagenes/aceptar.png)
+}
+
+#borde-principal {
+    position: relative;
+    width: 40%;
+    margin-top: 10px;
+    border: 1px solid #036fab;
+    box-shadow: 2px 2px 40px #045491;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 60px 0px 60px 30px;
+}
+.ui-panelgrid tr, .ui-panelgrid td{
+  border:none !important;
+}
+#cabecera-login{
+    position: relative;
+    background: url("#{resource['imagenes/menu-bar-header.png']}") repeat !important;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 80px;
+    border-radius: 15px;
+}
+
+#borde-botom{
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background: #AFAFAF;
+    border-radius: 15px;
+    height: 10px;
+
+}
+#login-text-top {
+    position: absolute;
+    border-radius: 14px;
+    background: url("#{resource['imagenes/menu-bar.png']}") !important;
+    color: #ffffff;
+    top: -4px;
+    left: -14px;
+    width: 105%;
+    height: 40px;
+    text-align: center;
+    font-size: 30px;
+}
+.dim{
+    height: 100px;
+    
+}
+

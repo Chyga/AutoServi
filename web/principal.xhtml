@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+
+        <h:head>
+
+            <f:facet name="first">
+
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+
+                <h:outputStylesheet library="css" name="estilo.css"/>
+
+                <title>SiGeRes</title>
+
+            </f:facet>
+
+        </h:head>
+
+        <h:body>
+
+            <p:growl id="msg" life="3000" />
+
+            <div id="cabecera-superior">
+
+                <div id="cabecera-login">
+                    <h:link outcome="principal.jsf">
+                        <p:graphicImage library="imagenes" name="Autorepuestos_1.png" styleClass="dim"/>
+                    </h:link>
+                    <p:graphicImage library="imagenes" name="logo-venta.png" style="height: 100px; float: right "/>
+
+                    <div id="borde-botom">
+
+                    </div>
+                </div>
+
+                <div id="contenedor-menu">
+                    <ui:include  src="/plantilla/menubar.xhtml"/>
+                </div>
+            </div>
+            <div id="contenido">
+
+                <p:ajaxStatus >
+
+                    <f:facet name="start">
+                        <p:graphicImage library="imagenes" 
+                                        name="ajax_loader_gray_32.gif" 
+                                        styleClass="ajax-status-estilo"/>
+                    </f:facet>
+
+                    <f:facet name="complete">
+                        <p:outputLabel value=""/>
+                    </f:facet>
+
+                </p:ajaxStatus>
+
+                <ui:insert name="content">
+
+                    <h:panelGrid>
+                        <p:graphicImage library="imagenes"
+                                        styleClass="derecha"
+                                        name="girl-computer.png"/>
+                    </h:panelGrid>
+
+                </ui:insert>
+
+            </div>
+            <div id="pie-pagina">
+                <ui:include src="/plantilla/piepagina.xhtml"/>
+            </div>
+        </h:body>
+    </f:view>
+</html>
