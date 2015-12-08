@@ -1,0 +1,95 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+
+    <p:panelGrid columns="4" class="center-panelgrid 
+                 panel-grid-facet-header 
+                 panel-grid-padding 
+                 panel-grid-sin-borde sombra fondo-celdas">
+        <f:facet name="header">
+            <p:outputLabel value="Registro"/>
+            <p:commandButton value="Guardar" style="float: right"/>
+        </f:facet>
+        <p:outputLabel value="Codigo" for="input-codigo"/>
+        <p:inputText id="input-codigo" required="true"/>
+        
+
+        <p:outputLabel value="Codigo De barra"/>
+        <p:inputText/>
+        
+
+        <p:outputLabel value="Descripcion"/>
+        <p:inputText/>
+        
+
+        <p:outputLabel value="Impuesto"/>
+        <p:inputText/>
+       
+
+        <p:outputLabel value="Precio Compra"/>
+        <p:inputText/>
+        
+
+        <p:outputLabel value="Precio Base"/>
+        <p:inputText/>
+        
+
+        <p:outputLabel value="Medida 1"/>
+        <p:inputText/>
+        
+
+        <p:outputLabel value="Medida 2"/>
+        <p:inputText/>
+        
+        
+        <p:outputLabel value="Medida 3"/>
+        <p:inputText/>
+        
+        
+        <p:outputLabel value="Medida 4"/>
+        <p:inputText/>
+        
+        
+        <p:outputLabel value="Unidad Medida 1"/>
+        <p:inputText/>
+        
+
+        <p:outputLabel value="Unidad Medida 2"/>
+        <p:inputText/>
+        
+        
+        <p:outputLabel value="Unidad Medida 3"/>
+        <p:inputText/>
+        
+        
+        <p:outputLabel value="Unidad Medida 4"/>
+        <p:inputText/>
+        
+        
+        <p:outputLabel value="Aplicacion"/>
+        <p:inputText/>
+        
+        
+        <p:outputLabel value="Imagen"/>
+        <p:fileUpload mode="simple"/>
+        
+        
+        <p:outputLabel value="Estado"/>
+        <p:selectOneMenu>
+            <f:selectItem itemValue="ACTIVO" itemLabel="ACTIVO"/>
+            <f:selectItem itemValue="INACTIVO" itemLabel="INACTIVO"/>
+            <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+        </p:selectOneMenu>
+        
+        <h:panelGroup/>
+        <h:panelGroup/>
+        
+         <f:facet name="footer">
+            <p:commandButton value="Guardar" style="float: right"/>
+        </f:facet>
+    </p:panelGrid>
+</ui:composition>

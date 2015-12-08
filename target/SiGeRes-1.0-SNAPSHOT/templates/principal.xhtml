@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+
+        <h:head>
+            <link rel="icon" type="image/png" href="#{resource['imagenes/java.png']}"/>
+            <f:facet name="first">
+
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+
+                <h:outputStylesheet library="css" name="estilo.css"/>
+                <h:outputStylesheet library="css" name="default.css"/>
+                <h:outputScript name="js/functions.js"/> 
+                <title>SiGeRes</title>
+
+            </f:facet>
+
+        </h:head>
+
+        <h:body>
+            <div class="gradiente-color-body">
+                <p:growl id="msg" life="3000" />
+
+                <div id="cabecera-superior">
+
+                    <div id="cabecera-login">
+
+                        <h:link outcome="/templates/principal.xhtml">
+                            <p:graphicImage library="imagenes" 
+                                            name="LOGO.png" 
+                                            style="margin-top: 10px"
+                                            width="250" height="100"/>
+                        </h:link>
+
+                        <div id="borde-botom"/>
+                    </div>
+
+                    <div id="contenedor-menu">
+                        <ui:include  src="/templates/menubar.xhtml"/>
+                    </div>
+                </div>
+                <div id="contenido">
+
+                    <p:ajaxStatus onstart="$('#ajaxStatus').css('display', 'inline')"
+                                  oncomplete="$('#ajaxStatus').css('display', 'none')" /> 
+
+
+
+                    <ui:insert name="content">
+                        <p:graphicImage name="imagenes/check.png"
+                                        style="float: right"
+                                        width="500" height="400"/>
+                    </ui:insert>
+                </div>
+                <div id="pie-pagina">
+                    <ui:include src="/templates/piepagina.xhtml"/>
+                </div>
+
+            </div>
+            <div class="ajax-status" id="ajaxStatus">
+                <p:graphicImage
+                    name="imagenes/loader-1.gif" style="background: none"/>
+            </div>
+            <h:form>
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" class="dialogo-confirmar-logout">
+                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+            </h:form>
+        </h:body>
+
+        <script type="text/javascript">
+            function logout(xhr, status, args) {
+                setTimeout(function () {
+                    window.location = '../login.xhtml';
+                }, 500);
+            }
+        </script>
+       
+    </f:view>
+</html>

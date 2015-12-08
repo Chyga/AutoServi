@@ -1,0 +1,30 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <p:panelGrid class="center-panelgrid" columns="2" style="width: 40%">
+        <f:facet name="header">
+            <p:outputLabel value="Formulario de Registro de Marca"/>
+        </f:facet>
+
+        <p:outputLabel value="Codigo" for="id-input_codigo"/>
+        <p:inputText id="id-input_codigo" required="true" />
+
+        <p:outputLabel value="Descripcion" for="id-input_descripcion"/>
+        <p:inputText id="id-input_descripcion" required="true"/>
+
+        <p:outputLabel value="Estado" for="id-selectone_estado"/>
+        <h:panelGrid columns="2" class="td-padding-0">
+            <p:selectOneRadio id="id-selectone_estado" required="true">
+                <f:selectItem itemLabel="Activo" itemValue="ACTIVO" />
+                <f:selectItem itemLabel="Inactivo" itemValue="INACTIVO"/>
+            </p:selectOneRadio>
+        </h:panelGrid>
+
+        <f:facet name="footer">
+            <p:commandButton value="Guardar"/>
+        </f:facet>
+    </p:panelGrid>
+
+</ui:composition>

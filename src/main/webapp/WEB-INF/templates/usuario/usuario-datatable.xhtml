@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <p:dataTable class="data-table-user" value="#{usuarioBean.lista}"
+                 var="users" rowIndexVar="linea" 
+                 id="list" widgetVar="data">
+        <!--  selectionMode="single" selection="{usuarioBean.selectedUser}"
+                 rowKey="{users.id}" -->
+
+        <f:facet name="header" class="class-header-datatableuser">
+            <div id="tooltip" title="Selecciona columnas a mostrar">
+                <p:commandButton id="columns-select"
+                                 type="button" icon="ui-icono-show-columns"/>
+            </div>
+            <p:columnToggler datasource="list" trigger="columns-select" 
+                             class="seleccion-columnas-datatable" />
+
+            <p:commandLink actionListener="#{usuarioBean.allUsers()}"
+                           value="Mostrar Todos"
+                           class="float-right"
+                           update="list"/>
+            <p:commandLink actionListener="#{usuarioBean.listUsers(true)}"
+                           value="Mostrar Activos||"
+                           class="float-right"
+                           update="list"/>
+
+            <p:link outcome="/usuario/usuarioform.xhtml" 
+                    value="Nuevo Usuario||" class="float-right"/>
+
+        </f:facet>
+
+        <p:column headerText="Nombre">
+            <p:outputLabel value="#{users.nombre}"/>
+        </p:column>
+
+        <p:column headerText="Apellido">
+            <p:outputLabel value="#{users.apellido}"/>
+        </p:column>
+
+        <p:column headerText="Codigo">
+            <p:outputLabel value="#{users.codigo}"/>
+        </p:column>
+
+        <p:column headerText="Clave">
+            <p:outputLabel value="#{users.clave}"/>
+        </p:column>
+
+        <p:column width="80" headerText="Operaciones">
+            <p:commandLink actionListener="#{usuarioBean.eliminar(users,linea)}" update="list"
+                           rendered="#{users.estado eq 'ACTIVO'}">
+                <p:graphicImage library="imagenes" name="delete-icon.png" width="24" height="24"/>
+            </p:commandLink>
+            <p:commandLink update="list"
+                           actionListener="#{usuarioBean.activarUsuario(users, linea)}"
+                           rendered="#{users.estado eq 'INACTIVO'}">
+                <p:graphicImage name="imagenes/join.png" width="24" height="24"/>
+            </p:commandLink>
+        </p:column>
+    </p:dataTable>
+
+</ui:composition>

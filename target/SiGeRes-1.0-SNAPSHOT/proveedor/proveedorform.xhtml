@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+    xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>PROVEEDOR</title>
+        <f:metadata>
+            <o:viewParam name="proveedor" value="#{proveedorbean.proveedor}"/>
+        </f:metadata>
+    </h:head>
+
+    <body>
+        <ui:composition template="./../templates/principal.xhtml">
+            <ui:define name="content">  
+                <p:growl autoUpdate="true"/>
+                <f:event type="preRenderView" listener="#{departamentobean.listarCombo(false)}" />
+                <h:form id="frm-proveedor">
+                    <p:panelGrid columns="6"
+                                 class="sp-tabla sombra panel-contenedor size-components 
+                                 component-tabla-proveedor border-interno-none center-panelgrid"
+                                 style="margin-left: 25%;">
+                        <f:facet name="header">
+                            <p:outputLabel value="#{not proveedorbean.isEdicion() ? 'EDITAR PROVEEDOR' : 'INFORMACION DE PROVEEDOR'}"/>
+                        </f:facet>
+
+                        <p:outputLabel for="txtcodigo" value="Código"/>
+                        <p:inputText id="txtcodigo"
+                                     class="no-apply-size-components"
+                                     required="true" value="#{proveedorbean.proveedor.codigo}"/>
+                        <p:message for="txtcodigo" display="icon"/>
+
+                        <p:outputLabel for="txtrazonsocial" value="Razon Social"/>
+                        <p:inputText id="txtrazonsocial" 
+                                     required="true" value="#{proveedorbean.proveedor.razonsocial}"/>
+                        <p:column/>
+
+                        <p:outputLabel for="combo-id-departamento" value="Departamento"/>
+                        <p:selectOneMenu value="#{proveedorbean.proveedor.idDepartamento}" id="combo-id-departamento"
+                                         onchange=""
+                                         widgetVar="wv-combo-proveedor"
+                                         converter="omnifaces.SelectItemsConverter" style="width: 150px">
+                            <p:ajax event="change"
+                                    listener="#{ciudadbean.listarComboById(proveedorbean.proveedor.idDepartamento)}"
+                                    process="@this" partialSubmit="true" update="combo-id-ciudad id-commandlink-ciudad">
+
+                            </p:ajax>
+                            <f:selectItem noSelectionOption="true" itemLabel="Seleccionar" itemValue="#{null}"/>
+                            <f:selectItems value="#{departamentobean.lista}" var="departamentos"
+                                           itemLabel="#{departamentos.descripcion}" itemValue="#{departamentos}"/>
+                        </p:selectOneMenu>
+
+                        <p:commandLink oncomplete="PF('wv-dialog-departamento').show()" immediate="true" >
+                            <p:graphicImage width="24" height="24"
+                                            name="imagenes/add-icon.png"
+                                            style="margin-left: -25px"/>
+                        </p:commandLink>
+
+                        <p:outputLabel for="combo-id-ciudad" value="Ciudad"/>
+                        <p:selectOneMenu id="combo-id-ciudad" disabled="#{proveedorbean.proveedor.idDepartamento eq null}"
+                                         value="#{proveedorbean.proveedor.idCiudad}"
+                                         converter="omnifaces.SelectItemsConverter" style="width: 150px">
+                            <f:selectItem noSelectionOption="true" itemLabel="Seleccionar" itemValue="#{null}"/>
+                            <f:selectItems value="#{ciudadbean.lista}" var="ciudades"
+                                           itemValue="#{ciudades}" itemLabel="#{ciudades.descripcion}"/>
+                        </p:selectOneMenu>
+                        <p:commandLink oncomplete="PF('wv-dialog-ciudad').show()"
+                                       actionListener="#{ciudadbean.ciudad.setIdDepartamento(proveedorbean.proveedor.idDepartamento)}"
+                                       id="id-commandlink-ciudad"
+                                       disabled="#{proveedorbean.proveedor.idDepartamento eq null}"
+                                       update="form-dialog-ciudad:id-dialog-ciudad"
+                                       immediate="true" >
+                            <p:graphicImage width="24" height="24"
+                                            name="imagenes/add-icon.png"
+                                            style="margin-left: -25px"/>
+                        </p:commandLink>
+
+
+                        <p:outputLabel for="txttelefono" value="Telefono"/>
+                        <p:inputText id="txttelefono" 
+                                     class="no-apply-size-components"
+                                     required="true" value="#{proveedorbean.proveedor.telefono}"/>
+                        <p:column/>
+
+                        <p:outputLabel for="txtcelular" value="Celular"/>
+                        <p:inputMask id="txtcelular" value="#{proveedorbean.proveedor.celular}" 
+                                     class="no-apply-size-components"
+                                     mask="(9999) 999-999" required="true"/>
+                        <p:column/>
+
+                        <p:outputLabel for="combo-id-estado" value="Estado"/>
+                        <p:selectOneMenu id="combo-id-estado"  required="true" value="#{proveedorbean.proveedor.estado}">
+
+                            <f:selectItem noSelectionOption="true" itemLabel="Seleccionar" itemValue="#{null}"/>
+                            <f:selectItem itemValue="ACTIVO" itemLabel="Activo"/>
+                            <f:selectItem itemValue="INACTIO" itemLabel="Inactivo"/>
+
+                        </p:selectOneMenu>
+                        <p:column/>
+
+                        <h:panelGroup/>
+                        <h:panelGroup/>
+                        <h:panelGroup/>
+                        <f:facet name="footer">
+                            <p:commandButton value="Guardar"
+                                             class="no-apply-size-components"
+                                             style="float: right"
+                                             update="@form" 
+                                             actionListener="#{proveedorbean.guardar()}"/>
+
+                        </f:facet>
+
+
+                    </p:panelGrid>
+
+                </h:form>
+                <ui:include src="/WEB-INF/templates/departamento/departamentodialogo.xhtml"/>
+                <ui:include src="/WEB-INF/templates/ciudad/ciudaddialogo.xhtml"/>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

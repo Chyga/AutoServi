@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../templates/principal.xhtml"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <f:metadata>
+        <o:viewParam name="articulo" value="#{articulobean.articulo}"/>  
+    </f:metadata>
+    <ui:define name="content">
+        <h:form id="frm-articulo">
+            <f:event type="preRenderView" listener="#{proveedorbean.listarCombo(false)}" />
+            <f:event type="preRenderView" listener="#{grupobean.listarCombo(false)}" />
+            <f:event type="preRenderView" listener="#{subgrupobean.listarCombo(false)}" />
+            <f:event type="preRenderView" listener="#{departamentobean.listarCombo(false)}" />
+            <f:event listener="#{grupobean.listarCombo(false)}" type="preRenderView"/>
+
+            <p:growl autoUpdate="true"/>
+
+            <ui:include src="/WEB-INF/templates/articulo/registro.xhtml"/>
+
+        </h:form>
+        <ui:include src="/proveedor/proveedorFormDialog.xhtml"/>
+        <ui:include src="/WEB-INF/templates/marca/marcadialogo.xhtml"/>
+        <ui:include src="/WEB-INF/templates/grupo/grupodialogo.xhtml"/>
+        <ui:include src="/WEB-INF/templates/subgrupo/subgrupodialogo.xhtml"/>
+        <p:dialog header="Choose image" modal="true"
+                  resizable="false" closeOnEscape="true"
+                  widgetVar="wv-dialog-fileupload">
+            <h:form enctype="multipart/form-data" id="frm-choose-image">
+                <p:fileUpload auto="true" 
+                              fileUploadListener="#{fileUploadBean.handleFileUpload}"
+                              oncomplete="PF('wv-dialog-fileupload').hide()"
+                              update=":frm-articulo:subir"/>
+            </h:form>
+        </p:dialog>
+    </ui:define>
+
+</ui:composition>

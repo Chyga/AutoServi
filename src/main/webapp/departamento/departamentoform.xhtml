@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>Departamento</title>
+        <f:metadata>
+            <o:viewParam name="departamento" value="#{departamentobean.departamento}"/>
+        </f:metadata>
+    </h:head>
+
+    <body>
+        <ui:composition template="./../templates/principal.xhtml">
+            <ui:define name="content">  
+                <p:growl autoUpdate="true"/>
+
+                <h:form>
+                    <p:panelGrid columns="2" style="width: 50%"
+                                 class="sp-tabla sombra size-components center-panelgrid">
+                        <f:facet name="header">
+                            <p:outputLabel value="#{departamentobean.editando ? 'EDITANDO DEPARTANENTO' : 'INFORMACION DE REGISTRO DEPARTAMENTO'}"/>
+                        </f:facet>
+
+                        <p:panelGrid columns="1" class="panel-contenedor">
+                            <p:graphicImage name="imagenes\state.png"
+                                            width="128" height="128"/> 
+                        </p:panelGrid>
+
+                        <p:panelGrid class="departamento-guardar panel-contenedor">
+                           
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Descripcion departamento" for="departamento-descripcion"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="departamento-descripcion" value="#{departamentobean.departamento.descripcion}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:message for="departamento-descripcion"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Estado departamento" for="departamento-estado"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneMenu required="true" id="departamento-estado" value="#{departamentobean.departamento.estado}"
+                                                     style="width: 150px">
+                                        <f:selectItem itemLabel="Activo" itemValue="ACTIVO"/>
+                                        <f:selectItem itemLabel="Inactivo" itemValue="INACTIVO"/>
+                                    </p:selectOneMenu>
+                                </p:column>
+                                <p:column>
+                                    <p:message for="departamento-estado"/>
+                                </p:column>
+                            </p:row>
+                            <f:facet name="footer">
+                                <p:row>
+                                    <p:column colspan="6">
+                                        <p:commandButton update="@form"
+                                                         class="save-button"
+                                                         value="guardar"
+                                                         action="#{departamentobean.guardar()}"/>
+                                        
+                                    </p:column>
+                                </p:row>
+                            </f:facet>
+                        </p:panelGrid>
+                    </p:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

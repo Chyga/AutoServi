@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <p:panelGrid columns="2" class="center-panelgrid panel-contenedor perimetro-border sombra">
+        <f:facet name="header">
+            <p:outputLabel value="Cambiar Password"/>
+        </f:facet>
+        <p:outputLabel value="Usuario ID"/>
+        <p:outputLabel value="#{loginControlador.user.codigo}"
+                       style="text-transform: uppercase"/>
+        <p:outputLabel value="Nombres"/>
+        <p:outputLabel value="#{loginControlador.user.nombre} #{loginControlador.user.apellido}"
+                       style="text-transform: uppercase"/>
+
+        <p:outputLabel value="Contraseña Actual" for="id-contraseña-actual"/>
+        <p:password id="id-contraseña-actual" required="true" value="#{loginControlador.currentPasswordPut}"/>
+
+        <p:outputLabel value="Nueva Contraseña" for="id-nueva-contraseña"/>
+        <p:password value="#{loginControlador.newPassword}"
+                    id="id-nueva-contraseña" required="true"
+                    match="id-repetir-contraseña" feedback="true"
+                    promptLabel="Contraseña"
+                    weakLabel="Débil" goodLabel="Medio" strongLabel="Fuerte"
+                    />
+
+        <p:outputLabel value="Repetir Contraseña" for="id-repetir-contraseña"/>
+        <p:password id="id-repetir-contraseña" required="true"/>
+
+        <f:facet name="footer">
+            <p:commandButton value="Cambiar" action="#{loginControlador.changePassword}" 
+                             style="float: left"/>
+            <p:commandButton value="Cancelar"
+                             immediate="true"
+                             action="/templates/principal.xhtml"
+                             style="float: right"/>
+        </f:facet>
+
+    </p:panelGrid>
+
+</ui:composition>

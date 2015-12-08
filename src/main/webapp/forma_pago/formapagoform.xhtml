@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Forma Pago</title>
+    </h:head>
+
+    <body>
+        <ui:composition template="./../templates/principal.xhtml">
+            <ui:define name="content">  
+                <p:growl autoUpdate="true"/>
+
+                <h:form>
+                    <p:panelGrid columns="6"
+                                 class="sp-tabla"
+                                 style="margin-left: 25%;">
+                        <f:facet name="header">
+                            <p:outputLabel value="Registro de forma pago"/>
+                        </f:facet>
+
+                        <p:outputLabel for="txtdescripcion" value="Descripcion"/>
+                        <p:inputText id="txtdescripcion" 
+                                     required="true" value="#{formaPagobean.formaPago.descripcion}"/>
+                        <p:message for="txtdescripcion" display="icon"/>
+                        
+                        <p:outputLabel for="txtinteres" value="Porcentaje Interes"/>
+                        <p:inputText id="txtinteres" 
+                                     required="true" value="#{formaPagobean.formaPago.aumentoporcentaje}"
+                                     />
+                        <p:message for="txtinteres" display="icon"/>
+
+                        <p:outputLabel for="combo-id-estado" value="Estado"/>
+                        <p:selectOneMenu id="combo-id-estado" value="#{formaPagobean.formaPago.estado}">
+
+                            <f:selectItem noSelectionOption="true" itemLabel="Selccionar" itemValue="#{null}"/>
+                            <f:selectItem itemValue="ACTIVO" itemLabel="Activo"/>
+                            <f:selectItem itemValue="INACTIO" itemLabel="Inactivo"/>
+
+                        </p:selectOneMenu>
+                        <p:message for="combo-id-estado" display="icon"/>
+
+                        <f:facet name="footer">
+                            <p:commandButton value="Guardar"
+                                             icon="ui-icono-registrar"
+                                             styleClass="botones"
+                                             update="@form" actionListener="#{formaPagobean.guardar()}"/>
+
+                        </f:facet>
+
+
+                    </p:panelGrid>
+
+
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

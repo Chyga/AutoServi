@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <p:panelGrid columns="4" class="center-panelgrid panel-contenedor">
+        <p:outputLabel for="combo-tipo-usuario" value="Tipo Usuario"/>
+        <p:selectOneMenu id="combo-tipo-usuario" value="#{usuarioBean.usuario.idTipousuario}"
+                         converter="omnifaces.SelectItemsConverter" style="width: 150px">
+            <f:selectItem noSelectionOption="true" itemLabel="Seleccionar" itemValue="#{null}"/>
+            <f:selectItems value="#{tipousuariobean.lista}" 
+                           var="tiposusuarios" 
+                           itemValue="#{tiposusuarios}"
+                           itemLabel="#{tiposusuarios.descripcion}"/>
+
+        </p:selectOneMenu>
+        <p:commandLink>
+            <p:graphicImage width="32" height="32"
+                            name="imagenes/add-icon.png" class="sombra"/>
+        </p:commandLink>
+        <p:message for="combo-tipo-usuario"/>
+
+        <p:outputLabel for="combo-deposito" value="Deposito"/>
+        <p:selectOneMenu id="combo-deposito" value="#{usuarioBean.usuario.idDeposito}"
+                         converter="omnifaces.SelectItemsConverter" style="width: 150px">
+            <f:selectItem noSelectionOption="true" itemLabel="Select" itemValue="#{null}"/>
+            <f:selectItems value="#{depositobean.lista}" var="depositos"
+                           itemValue="#{depositos}" itemLabel="#{depositos.descripcion}"/>
+        </p:selectOneMenu>
+        <p:commandLink>
+            <p:graphicImage width="32" height="32"
+                            name="imagenes/add-icon.png" class="sombra"/>
+        </p:commandLink>
+        <p:message for="combo-deposito" display="icon"/>
+
+        <p:outputLabel for="combo-id-estado" value="Estado"/>
+        <p:selectOneMenu id="combo-id-estado" value="#{usuarioBean.usuario.estado}"
+                         style="width: 150px">
+
+            <f:selectItem noSelectionOption="true" itemLabel="Selccionar" itemValue="#{null}"/>
+            <f:selectItem itemValue="ACTIVO" itemLabel="ACTIVO"/>
+            <f:selectItem itemValue="INACTIVO" itemLabel="INACTIVO"/>
+
+        </p:selectOneMenu>
+        <p:commandLink>
+            <p:graphicImage width="32" height="32"
+                            name="imagenes/add-icon.png" class="sombra"/>
+        </p:commandLink>
+        <p:message for="combo-id-estado" display="icon"/>
+    </p:panelGrid>
+
+
+
+</ui:composition>

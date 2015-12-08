@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Sucursal</title>
+    </h:head>
+
+    <body>
+        <ui:composition template="./../templates/principal.xhtml">
+            <ui:define name="content">  
+                <p:growl autoUpdate="true"/>
+
+                <h:form>
+                    <p:panelGrid columns="6"
+                                 class="sp-tabla panel-contenedor border-interno-none size-components"
+                                 style="margin-left: 25%;">
+                        <f:facet name="header">
+                            <p:outputLabel value="Registro de Tipo Usuario"/>
+                        </f:facet>
+
+                        <p:outputLabel for="txtdescripcion" value="Descripción"/>
+                        <p:inputText id="txtdescripcion" 
+                                     required="true" value="#{tipousuariobean.tipoUsuario.descripcion}"/>
+                        <p:message for="txtdescripcion" display="icon"/>
+
+                        <p:outputLabel for="combo-id-estado" value="Estado"/>
+                        <p:selectOneMenu id="combo-id-estado" value="#{tipousuariobean.tipoUsuario.estado}">
+
+                            <f:selectItem noSelectionOption="true" itemLabel="Selccionar" itemValue="#{null}"/>
+                            <f:selectItem itemValue="ACTIVO" itemLabel="Activo"/>
+                            <f:selectItem itemValue="INACTIO" itemLabel="Inactivo"/>
+
+                        </p:selectOneMenu>
+                        <p:message for="combo-id-estado" display="icon"/>
+                        
+                        <p:outputLabel for="combo-id-seguridad" value="Seguridad"/>
+                        <p:selectOneMenu id="combo-id-seguridad" value="#{tipousuariobean.tipoUsuario.chkseguridad}">
+
+                            <f:selectItem noSelectionOption="true" itemLabel="Selccionar" itemValue="#{null}"/>
+                            <f:selectItem itemValue="1" itemLabel="Activo"/>
+                            <f:selectItem itemValue="0" itemLabel="Inactivo"/>
+
+                        </p:selectOneMenu>
+                        <p:message for="combo-id-seguridad" display="icon"/>
+                        
+                        <p:outputLabel for="combo-id-venta" value="Venta"/>
+                        <p:selectOneMenu id="combo-id-venta" value="#{tipousuariobean.tipoUsuario.chkventa}">
+
+                            <f:selectItem noSelectionOption="true" itemLabel="Selccionar" itemValue="#{null}"/>
+                            <f:selectItem itemValue="1" itemLabel="Activo"/>
+                            <f:selectItem itemValue="0" itemLabel="Inactivo"/>
+
+                        </p:selectOneMenu>
+                        <p:message for="combo-id-venta" display="icon"/>
+                        
+                        <p:outputLabel for="combo-id-compra" value="Compra"/>
+                        <p:selectOneMenu id="combo-id-compra" value="#{tipousuariobean.tipoUsuario.chkcompra}">
+
+                            <f:selectItem noSelectionOption="true" itemLabel="Selccionar" itemValue="#{null}"/>
+                            <f:selectItem itemValue="1" itemLabel="Activo"/>
+                            <f:selectItem itemValue="0" itemLabel="Inactivo"/>
+
+                        </p:selectOneMenu>
+                        <p:message for="combo-id-compra" display="icon"/>
+                        
+                        <p:outputLabel for="combo-id-caja" value="Caja"/>
+                        <p:selectOneMenu id="combo-id-caja" value="#{tipousuariobean.tipoUsuario.chkcaja}">
+
+                            <f:selectItem noSelectionOption="true" itemLabel="Selccionar" itemValue="#{null}"/>
+                            <f:selectItem itemValue="1" itemLabel="Activo"/>
+                            <f:selectItem itemValue="0" itemLabel="Inactivo"/>
+
+                        </p:selectOneMenu>
+                        <p:message for="combo-id-caja" display="icon"/>
+                        
+                        <p:outputLabel for="combo-id-inventario" value="Inventario"/>
+                        <p:selectOneMenu id="combo-id-inventario" value="#{tipousuariobean.tipoUsuario.chkinventario}">
+
+                            <f:selectItem noSelectionOption="true" itemLabel="Selccionar" itemValue="#{null}"/>
+                            <f:selectItem itemValue="1" itemLabel="Activo"/>
+                            <f:selectItem itemValue="0" itemLabel="Inactivo"/>
+
+                        </p:selectOneMenu>
+                        <p:message for="combo-id-inventario" display="icon"/>
+                        
+                        <p:outputLabel for="combo-id-facturacion" value="Facturacion"/>
+                        <p:selectOneMenu id="combo-id-facturacion" value="#{tipousuariobean.tipoUsuario.chkfacturacion}">
+
+                            <f:selectItem noSelectionOption="true" itemLabel="Selccionar" itemValue="#{null}"/>
+                            <f:selectItem itemValue="1" itemLabel="Activo"/>
+                            <f:selectItem itemValue="0" itemLabel="Inactivo"/>
+
+                        </p:selectOneMenu>
+                        <p:message for="combo-id-facturacion" display="icon"/>
+
+                                                
+                        <f:facet name="footer">
+                            <p:commandButton value="Guardar"
+                                             icon="ui-icono-registrar"
+                                             class="save-button"
+                                             styleClass="botones"
+                                             update="@form" 
+                                             actionListener="#{tipousuariobean.guardar()}"/>
+
+                        </f:facet>
+
+
+                    </p:panelGrid>
+
+
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

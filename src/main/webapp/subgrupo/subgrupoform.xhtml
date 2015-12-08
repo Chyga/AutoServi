@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Subgrupos</title>
+    </h:head>
+
+    <body>
+        <ui:composition template="./../templates/principal.xhtml">
+            <ui:define name="content">  
+                <f:event type="preRenderView" listener="#{grupobean.listarCombo(false)}" />
+                <p:growl autoUpdate="true"/>
+
+                <h:form>
+                    <p:panelGrid columns="2" class="center-panelgrid">
+                        <p:graphicImage name="imagenes/group.png"/>
+                        <p:panelGrid
+                            class="sp-tabla sin-borde size-components">
+                            <f:facet name="header">
+                                <p:row>
+                                    <p:column colspan="6">
+                                        <p:outputLabel value="Registrar Sub Grupo"/>
+                                    </p:column>
+                                </p:row>
+
+                            </f:facet>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Descripcion" for="id-txt-descripcion"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="id-txt-descripcion" required="true" value="#{subgrupobean.subGrupo.descripcion}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:message display="icon" for="id-txt-descripcion"/>
+                                </p:column>
+                                <p:column/>
+                                <p:column/>
+                                <p:column/>
+                            </p:row>
+
+                            <p:row>
+                                <p:column colspan="6">
+                                    <h:panelGrid columns="3">
+                                        <p:outputLabel value="Estado" for="id-option-state"/>
+                                        <p:selectOneMenu id="id-option-state" value="#{subgrupobean.subGrupo.estado}" >
+                                            <f:selectItem itemLabel="Activo" itemValue="ACTIVO"/>
+                                            <f:selectItem itemLabel="Inactivo" itemValue="INACTIVO"/>
+                                        </p:selectOneMenu>
+                                        <p:message display="icon" for="id-option-state"/>
+                                    </h:panelGrid>
+
+                                </p:column>
+                            </p:row>
+
+                            <f:facet name="footer">
+
+                                <p:row>
+                                    <p:column colspan="6">
+                                        <p:commandButton value="Guardar"
+                                                         icon="ui-icono-registrar"
+                                                         class="save-button"
+                                                         update="@form"
+                                                         actionListener="#{subgrupobean.guardar()}"/>
+                                    </p:column>
+                                </p:row>
+
+                            </f:facet>
+
+
+                        </p:panelGrid>
+                    </p:panelGrid>
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <p:panelGrid class="center-panelgrid panel-contenedor">
+        <p:row>
+            <p:column>
+                <p:outputLabel for="txtnombre" value="Nombre"/>
+            </p:column>
+            <p:column>
+                <p:inputText id="txtnombre" required="true" value="#{usuarioBean.usuario.nombre}"/>
+            </p:column>
+            <p:column>
+                <p:message for="txtnombre" display="icon"/>
+            </p:column>
+        </p:row>
+        <p:row>
+            <p:column>
+                <p:outputLabel for="txtapellido" value="Apellido"/>
+            </p:column>
+            <p:column>
+                <p:inputText id="txtapellido" required="true" value="#{usuarioBean.usuario.apellido}"/>
+            </p:column>
+            <p:column>
+                <p:message for="txtapellido" display="icon"/>
+            </p:column>
+        </p:row>
+        <p:row>
+            <p:column>
+                <p:outputLabel for="txtcodigo" value="Código"/>
+            </p:column>
+            <p:column>
+                <p:inputText id="txtcodigo" 
+                             required="true" value="#{usuarioBean.usuario.codigo}"/>
+            </p:column>
+            <p:column>
+                <p:message for="txtcodigo" display="icon"/>
+            </p:column>
+        </p:row>
+        <p:row>
+            <p:column>
+                <p:outputLabel for="txtclave" value="Clave"/>
+            </p:column>
+            <p:column>
+                <p:password id="txtclave" 
+                            required="true"
+                            redisplay="true"
+                            feedback="true"
+                            weakLabel="Debil" 
+                            goodLabel="Buena" 
+                            strongLabel="Fuerte" 
+                            promptLabel="Introdusca clave" 
+                            match="txtclaveconfirmacion" value="#{usuarioBean.usuario.clave}"/>
+            </p:column>
+            <p:column>
+                <p:message for="txtclave" display="icon"/>
+            </p:column>
+        </p:row>
+        <p:row>
+            <p:column>
+                <p:outputLabel for="txtclaveconfirmacion" 
+                               value="Repetir clave"/>
+            </p:column>
+            <p:column>
+                <p:password id="txtclaveconfirmacion" 
+                            required="true"
+                            value="claveconfirmacion" />
+            </p:column>
+            <p:column>
+                <p:message for="txtclaveconfirmacion" display="icon"/>
+            </p:column>
+        </p:row> 
+        
+    </p:panelGrid>
+</ui:composition>

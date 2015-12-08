@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Articulo</title>
+    </h:head>
+
+    <body>
+        <ui:composition template="./../templates/principal.xhtml">
+            <p:growl autoUpdate="true"/>
+            <ui:define name="content">
+                <f:event type="preRenderView" listener="#{articulobean.listarTabla(false)}"/>
+                <h:form id="formArticulo">
+                    <p:fieldset class="generic-fielset">
+
+                        <p:dataTable value="#{articulobean.lista}" var="articulos"
+                                     id="datatable-articulos"
+                                     emptyMessage="Sin Registros"
+                                     class="generic-table centrar"
+                                     style="width: 70%"
+                                     rowIndexVar="linea"
+                                     rows="5"
+                                     paginator="true"
+                                     rowsPerPageTemplate="5,10,15"
+                                     paginatorPosition="bottom"
+                                     widgetVar="articuloTable"
+                                     filteredValue="#{articulobean.listafiltro}">
+
+
+                            <f:facet name="header">
+                                <h:panelGrid columns="2">
+                                    <p:graphicImage name="imagenes/binoculars.png"
+                                                    width="24" height="24"/>
+                                    <p:inputText id="globalFilter" 
+                                                 onkeyup="PF('articuloTable').filter()" 
+                                                 placeholder="Busqueda Rapida"/>
+                                </h:panelGrid>
+
+
+                            </f:facet>
+                            
+                            <p:column headerText="Imagen" width="120">
+                                <p:graphicImage value="#{articulobean.baseUrl}null.png"
+                                                width="50" height="50"/>
+                            </p:column>
+                            
+
+                            <p:column width="120" headerText="Acciones" style="text-align: center" class="class-acciones">
+                                <p:commandLink update=":form-dialog" oncomplete="PF('articuloDialog').show()"
+                                               title="View" class="acciones-hover">
+                                    <f:setPropertyActionListener value="#{articulos}" target="#{articulobean.articulo}" />
+                                    <p:graphicImage library="imagenes" name="view-glass.png" width="24" height="24"/>
+                                </p:commandLink>
+                                <p:link outcome="/articulo/articuloform">
+                                    <f:param name="articulo" value="#{articulos.id}"/>
+                                    <p:graphicImage library="imagenes" name="edit.png" width="24" height="24"/>
+                                </p:link>
+
+                                <p:commandLink update=":form-confirm-dialog:confirmDialog"
+                                               oncomplete="PF('confirmDelete').show();">
+                                    <p:graphicImage library="imagenes" name="cancel-2.png" width="24" height="24"/>
+                                    <f:setPropertyActionListener value="#{articulos}" target="#{articulobean.articulo}" />
+
+                                </p:commandLink>
+
+
+
+                            </p:column>
+
+                            <p:column headerText="Codigo"
+                                      style="width: 120px; padding: 1px; text-align: center"
+                                      filterBy="#{articulos.id}"
+                                      filterMatchMode="exact">
+                                #{articulos.id}
+                            </p:column>
+                            <p:column headerText="Descripción" 
+                                      style="width: 450px; padding: 1px; text-align: center"
+                                      filterStyleClass="filter-by-descripcion"
+                                      filterBy="#{articulos.descripcion}"
+                                      filterMatchMode="contains">
+                                #{articulos.descripcion}
+                            </p:column>
+                            <p:column headerText="Estado"
+                                      style="text-align: center; width: 150px"
+                                      filterBy="#{articulos.estado}"
+                                      filterMatchMode="exact"
+                                      >
+                                <f:facet name="filter">
+                                    <p:selectOneMenu onchange="PF('articuloTable').filter()">
+                                        <f:selectItem itemLabel="Seleccione" itemValue="#{null}" noSelectionOption="true" />
+                                        <f:selectItem itemLabel="Activo" itemValue="ACTIVO" />
+                                        <f:selectItem itemLabel="Inactivo" itemValue="INACTIVO" />
+                                    </p:selectOneMenu>
+                                </f:facet>
+                                #{articulos.estado}
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:fieldset>
+                </h:form>
+                <h:form id="form-dialog">
+                    <p:dialog header="Articulo Info" widgetVar="articuloDialog" 
+                              modal="true" showEffect="fade" 
+                              hideEffect="fade" resizable="false">
+                        <p:outputPanel id="articuloDetail" style="text-align:center;">
+                            <p:panelGrid  columns="2" 
+                                          columnClasses="label-dialogo-view" class="panel-contenedor borde-bottom">
+
+                                <h:outputText value="Codigo:" />
+                                <h:outputText value="Descripción" />
+                                <h:outputText value="Estado:" />
+                                <h:panelGroup/>
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                </h:form>
+                <h:form id="form-confirm-dialog">
+                    <p:confirmDialog id="confirmDialog"
+                                     widgetVar="confirmDelete"
+                                     header="Message"
+                                     severity="alert"
+                                     closeOnEscape="true"
+                                     appendTo="@(body)"
+                                     closable="true">
+
+                        <p:commandButton id="btnYes"
+                                         value="Si"
+                                         process="@this"
+                                         style="float: right"
+                                         actionListener="#{articulobean.eliminar}"
+                                         oncomplete="PF('confirmDelete').hide()"
+                                         update=":formArticulo:datatable-articulos"/>
+
+                        <p:commandButton id="btnNo"
+                                         style="float: right"
+                                         value="No"
+                                         onclick="PF('confirmDelete').hide()"
+                                         type="button" />
+
+                        <f:facet name="message">
+                            <p:outputPanel>
+                                <h:outputFormat value="Se eliminara a #{articulobean.articulo.descripcion}, confirmar?" escape="false"/>
+                            </p:outputPanel>
+                        </f:facet>
+                    </p:confirmDialog>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

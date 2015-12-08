@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    <h:body>
+
+        <h:form>
+
+            <p:menubar style="margin-top: 10px;" class="menu-sistema">
+
+                <p:submenu label="Archivo" 
+                           >
+
+                    <p:menuitem value="Inicio" 
+                                url="/templates/principal.xhtml" 
+                                />
+
+                    <p:menuitem value="Cambiar Clave"  
+                                url="/usuario/change-password.xhtml"
+                                />
+
+                </p:submenu>
+
+                <p:submenu label="Ventas" >
+
+                    <p:menuitem value="Iniciar Venta"
+                                />
+                    <p:menuitem value="Consultar Ventas"
+                                />
+                    <p:menuitem value="Comprobantes Emitidos"/>
+                    <p:menuitem value="Presupuestos"/>
+
+                </p:submenu>
+                <p:submenu label="Compras" >
+
+                    <p:menuitem value="Pedido" url="/compra/pedidoform.xhtml"/>
+                    <p:menuitem value="Facturas de Compras" url="/compra/facturaCompraform.xhtml"/>
+
+                </p:submenu>
+                <p:submenu label="Inventario"
+                           >
+
+                    <p:menuitem value="Generar Inventario"/>
+
+                    <p:menuitem value="Aprobar Inventario" url="venta.xhtml"/>
+
+                </p:submenu>
+                <p:submenu label="Caja">
+
+                    <p:menuitem value="Iniciar Caja"/>
+                    <p:menuitem value="Finalizar Caja"/>
+                    <p:menuitem value="Saldo Actual"/>
+
+                </p:submenu>
+                <p:submenu label="Mantenimiento">
+                    <p:submenu label="Usuarios"
+                               >
+
+                        <p:menuitem url="/usuario/usuarioform.xhtml"
+                                    value="Adicionar"
+                                    title="Añade un usuario del sistema"
+                                    />
+                        <p:menuitem value="Consultar Usuario"
+                                    url="/usuario/usuario.xhtml" 
+
+                                    />
+                        <p:submenu label="Tipo Usuario"
+                                   >
+
+                            <p:menuitem url="/tipousuario/tipo_usuarioform.xhtml"
+                                        value="Adicionar"
+                                        title="Añade un Tipo de Usuario al sistema"
+                                        />
+                            <p:menuitem value="Consultar Tipo Usuario"
+                                        url="/usuario/usuario-list.xhtml" 
+
+                                        />
+                        </p:submenu>
+
+                    </p:submenu>
+
+                    <p:submenu label="Articulos" 
+                               >
+
+                        <p:menuitem value="Adicionar" 
+                                    title="Añade un articulo nuevo para el negocio"
+                                    url="/articulo/articuloform.xhtml" 
+                                    />
+
+
+                        <p:menuitem value="Consultar Articulo"
+                                    url="/articulo/articulotable.xhtml" 
+
+                                    title="Lista de articulos con las operaciones de borrar y modificar"/>
+
+                    </p:submenu>
+
+                    <p:submenu label="Proveedores">
+
+                        <p:menuitem value="Adicionar" 
+
+                                    url="/proveedor/proveedorform.xhtml"/>
+                        <p:menuitem value="Consultar Proveedores"
+
+                                    url="/proveedor/proveedortable.xhtml"
+                                    />
+
+                    </p:submenu>
+                    <p:submenu label="Deposito"
+                               >
+
+                        <p:menuitem url="/deposito/depositoform.xhtml"
+                                    value="Adicionar"
+                                    title="Añade un nuevo Depostivo"
+                                    />
+                        <p:menuitem value="Consultar"
+                                    url="/deposito/depositotable.xhtml" 
+                                    />
+                    </p:submenu>
+                    <p:submenu label="Clientes">
+
+                        <p:menuitem value="Adicionar" 
+
+                                    url="/clientes/clientesform.xhtml"/>
+                        <p:menuitem value="Consultar Cliente"
+                                    />
+                        <p:menuitem value="Tipo de Cliente"
+                                    />
+
+                    </p:submenu>
+                    <p:submenu label="Departamento"
+                               >
+
+                        <p:menuitem url="/departamento/departamentoform.xhtml"
+                                    value="Adicionar"
+                                    title="Añade un nuevo Depostivo"
+                                    />
+                        <p:menuitem value="Consultar"
+                                    url="/departamento/departamentotable.xhtml" 
+
+                                    />
+                    </p:submenu>
+
+                    <p:submenu label="Ciudad"
+                               >
+
+                        <p:menuitem url="/ciudad/ciudadform.xhtml"
+                                    value="Adicionar"
+                                    title="Añade un nuevo Depostivo"
+                                    />
+                        <p:menuitem value="Consultar"
+                                    url="/ciudad/ciudadtable.xhtml" 
+                                    />
+                    </p:submenu>
+
+                    <p:submenu label="Grupo"
+                               >
+
+                        <p:menuitem url="/grupo/grupoform.xhtml"
+                                    value="Adicionar"
+                                    title="Añade un nuevo Depostivo"
+                                    />
+                        <p:menuitem value="Consultar"
+                                    url="/ciudad/ciudadtable.xhtml" 
+
+                                    />
+                    </p:submenu>
+
+                    <p:submenu label="Sub Grupo"
+                               >
+
+                        <p:menuitem url="/subgrupo/subgrupoform.xhtml"
+                                    value="Adicionar"
+                                    title="Añade un nuevo Depostivo"
+                                    />
+                        <p:menuitem value="Consultar"
+                                    url="/subgrupo/subgrupotable.xhtml" 
+                                    />
+                    </p:submenu>
+
+                </p:submenu>
+                <p:submenu label="Reportes">
+
+                    <p:menuitem value="Proveedores"/>
+                    <p:menuitem value="Clientes"/>
+                    <p:menuitem value="Usuarios"/>
+                    <p:menuitem value="Articulos"/>
+                    <p:menuitem value="Compra"/>
+                    <p:menuitem value="Venta"/>
+
+                </p:submenu>
+
+                <p:menuitem value="Cerrar Session"
+                            actionListener="#{loginControlador.logout}"
+                            oncomplete="logout(xhr,status,args)">
+                    <p:confirm message="¿Cerrar la Session?" icon="ui-icon-alert" />
+                </p:menuitem>
+
+
+
+
+            </p:menubar>
+        </h:form>
+
+
+    </h:body>
+</ui:composition>
+

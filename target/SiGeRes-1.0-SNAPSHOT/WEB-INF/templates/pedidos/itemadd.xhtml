@@ -1,0 +1,32 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <p:panelGrid columns="6" style="width: 100%" 
+                 id="item-add"
+                 class="panel-contenedor centrar sin-borde">
+
+        <p:outputLabel value="Articulo"/>
+        <p:selectOneMenu value="#{pedidocomprabean.pedidoCompraDetalle.idArticulo}"
+                         converter="omnifaces.SelectItemsConverter"
+                         filter="true" filterMatchMode="startsWith">
+            <f:selectItem noSelectionOption="true" itemLabel="Articulo" itemValue="#{null}"/>
+            <f:selectItems value="#{articulobean.lista}" itemValue="#{article}" 
+                           itemLabel="#{article.descripcion}"
+                           var="article"/>
+        </p:selectOneMenu>
+        <p:commandButton value="Listar"
+                         class="boton-centrar"
+                         update="dialog-articulo"
+                         oncomplete="PF('articuloTableDialog').show()"/>
+
+        <p:outputLabel value="Cantidad"/>
+        <p:inputText value="#{pedidocomprabean.pedidoCompraDetalle.cantidad}" style="width: 50px"
+                     onkeypress="return validateNumber(event)"/>
+
+        <p:commandButton value="Agregar" 
+                         actionListener="#{pedidocomprabean.agregarDetalle(false)}"
+                         update="editablePedido subtotal valorTotal item-add"/>
+    </p:panelGrid>
+
+</ui:composition>

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Usuario</title>
+    </h:head>
+
+    <body>
+        <ui:composition template="./../templates/principal.xhtml">
+            <ui:define name="content">  
+
+                <p:growl autoUpdate="true"/>
+                <f:event type="preRenderView" listener="#{usuarioBean.listUsers(false)}"/>
+                <h:form id="frm-users">
+
+                    <p:panelGrid class="main-panel center-panelgrid border-interno-none" id="content-table">
+                        <p:row>
+                            <p:column class="ex header-cell-data-table-user" colspan="2" style="text-align: center">
+                                <p:outputLabel value="ADMINISTRAR USUARIOS"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:graphicImage width="128" height="128" 
+                                                name="imagenes/manage-user.png"/>
+                            </p:column>
+                            <p:column>
+                                <ui:include src="/WEB-INF/templates/usuario/usuario-datatable.xhtml"/>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+
+                </h:form>
+
+              
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

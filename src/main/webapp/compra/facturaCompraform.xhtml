@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../templates/principal.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <f:metadata>
+        <f:event listener="#{articulobean.listarCombo(false)}" type="preRenderView"/>
+        <f:event listener="#{proveedorbean.listarCombo(false)}" type="preRenderView"/>
+        <f:event listener="#{depositobean.listarCombo(false)}" type="preRenderView"/>
+        <f:event listener="#{pedidocomprabean.cargarUsuario(loginControlador.user)}" type="preRenderView"/>
+        
+    </f:metadata>
+    <ui:define name="content">
+        <h:form id="frm-pedido">
+            <p:growl autoUpdate="true"/>
+
+            <p:panelGrid columns="1" style="width: 80%; margin-left: auto;margin-right: auto"
+                         id="pPedido"
+                         class="class-editable-datatable sombra header-panelgrid-fondo">
+                <f:facet name="header" class="class-pedido-container-title">
+                    <p:outputLabel value="FACTURA COMPRA"/>
+                    <p:commandButton value="Facturar" 
+                                     rendered="#{pedidocomprabean.pedidoCompra.estado eq 'PENDIENTE'}"/>
+                    <p:commandButton value="Guardar"
+                                     update="@form" actionListener="#{pedidocomprabean.guardar()}"/>
+                </f:facet>
+
+                <ui:include src="/compra/factura/header.xhtml"/>
+
+                <ui:include src="/compra/factura/itemadd.xhtml"/>
+
+                <ui:include src="/compra/factura/tablaEditable.xhtml"/>
+
+
+            </p:panelGrid>
+        </h:form>
+
+        <p:dialog header="Articulos" widgetVar="articuloTableDialog" 
+                  modal="true" showEffect="fade" class="dialogo" id="dialog-articulo"
+                  hideEffect="fade" resizable="false" draggable="true">
+            <p:ajax event="close" update="frm-pedido:editablePedido"/>
+            <ui:include src="/compra/factura/articuloTableDialog.xhtml"/>
+
+        </p:dialog>
+
+        <ui:include src="/compra/factura/confirmDialog.xhtml"/>
+        <ui:include src="/compra/factura/cantidad.xhtml"/>
+
+    </ui:define>
+
+</ui:composition>

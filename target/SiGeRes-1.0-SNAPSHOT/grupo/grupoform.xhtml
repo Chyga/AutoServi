@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Grupo</title>
+    </h:head>
+
+    <body>
+        <ui:composition template="./../templates/principal.xhtml">
+            <ui:define name="content">  
+                <p:growl autoUpdate="true"/>
+
+                <h:form>
+                    <p:panelGrid columns="2" class="center-panelgrid">
+                        <f:facet name="header">
+                            <p:outputLabel value="INFORMACION DE REGISTRO DE GRUPO"/>
+                        </f:facet>
+                        
+                        <p:graphicImage name="imagenes/group.png"/>
+                        
+                        <p:panelGrid columns="3"
+                                     class="sp-tabla panel-contenedor
+                                     border-interno-none size-components">
+
+                            <p:outputLabel for="txtdescripción" value="Descripción"/>
+                            <p:inputText id="txtdescripción" 
+                                         required="true" value="#{grupobean.grupo.descripcion}"/>
+                            <p:message for="txtdescripción" display="icon"/>
+
+                            <p:outputLabel for="combo-id-estado" value="Estado"/>
+                            <p:selectOneMenu id="combo-id-estado" value="#{grupobean.grupo.estado}">
+
+                                <f:selectItem noSelectionOption="true" itemLabel="Selccionar" itemValue="#{null}"/>
+                                <f:selectItem itemValue="ACTIVO" itemLabel="Activo"/>
+                                <f:selectItem itemValue="INACTIO" itemLabel="Inactivo"/>
+
+                            </p:selectOneMenu>
+                            <p:message for="combo-id-estado" display="icon"/>
+
+                            <f:facet name="footer">
+                                <p:commandButton value="Guardar"
+                                                 styleClass="botones"
+                                                 class="save-button"
+                                                 update="@form" actionListener="#{grupobean.guardar()}"/>
+
+                            </f:facet>
+
+
+                        </p:panelGrid>
+                    </p:panelGrid>
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

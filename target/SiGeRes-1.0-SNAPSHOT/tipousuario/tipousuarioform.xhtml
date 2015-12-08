@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Sucursal</title>
+    </h:head>
+
+    <body>
+        <ui:composition template="./../templates/principal.xhtml">
+            <ui:define name="content">  
+                <p:growl autoUpdate="true"/>
+                <f:event listener="#{tipousuariobean.listarCombo(false)}" type="preRenderView"/>
+
+                <h:form>
+                    <p:panelGrid
+                        class="sp-tabla
+                        center-panelgrid">
+                        <f:facet name="header">
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Permisos"/>
+                                </p:column>
+                            </p:row>
+
+                        </f:facet>
+                        <p:row>
+                            <p:column>
+                                <p:selectOneMenu value="#{tipousuariobean.guardar()}">
+                                    <f:selectItem noSelectionOption="true" itemLabel="S. Tipo Usuario"/>
+                                    <f:selectItems value="#{tipousuariobean.lista}"
+                                                   var="la_lista"
+                                                   itemLabel="#{la_lista.descripcion}"
+                                                   itemValue="#{la_lista}"
+                                </p:selectOneMenu>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:selectManyCheckbox value="#{tipousuariobean.checkPermisos}" layout="grid" columns="1">
+                                    <f:selectItems value="#{tipousuariobean.lista}" 
+                                                   var="permisos" 
+                                                   itemLabel="#{permisos.descripcion}" itemValue="#{permisos.descripcion}" />
+                                </p:selectManyCheckbox>
+                            </p:column>
+                        </p:row>
+
+
+
+                        <f:facet name="footer">
+                            <p:row>
+                                <p:column>
+                                    <p:commandButton value="Guardar"
+                                                     icon="ui-icono-registrar"
+                                                     class="save-button"
+                                                     styleClass="botones"
+                                                     update="@form" 
+                                                     actionListener="#{tipousuariobean.guardar()}"/>
+                                </p:column>
+                            </p:row>
+
+
+                        </f:facet>
+
+
+                    </p:panelGrid>
+
+
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

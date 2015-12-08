@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <p:fieldset class="generic-fielset">
+        <p:dataTable value="#{clienteBean.lista}"
+                     class="estilo-data-table"
+                     var="cliente">
+            <f:facet name="header">
+                <p:inputText placeholder="Busqueda Rapida" class="float-right"/>
+            </f:facet>
+            
+            <p:column headerText="Nombre">
+                #{cliente.nombreContacto}
+            </p:column>
+            <p:column headerText="Sobrenombre">
+                #{cliente.nombreFantasia}
+            </p:column>
+
+            <p:column headerText="Codigo">
+                #{cliente.codigo}
+            </p:column>
+
+            <p:column headerText="Direccion">
+                #{cliente.direccion}
+            </p:column>
+
+            <p:column headerText="Telefono">
+                #{cliente.telefono}
+            </p:column>
+
+            <p:column headerText="Ciudad">
+                #{cliente.idCiudad.descripcion}
+            </p:column>
+
+        </p:dataTable>
+    </p:fieldset>
+
+</ui:composition>

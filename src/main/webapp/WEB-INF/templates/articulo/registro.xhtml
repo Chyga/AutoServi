@@ -1,0 +1,165 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+
+    <p:panelGrid columns="9"
+                 class="center-panelgrid 
+                 header-panelgrid-fondo panel-contenedor
+                 panel-grid-padding border-interno-none
+                 sombra dimensiones-componentes">
+        <f:facet name="header">
+            <p:outputLabel value="Registro" style="float: left; text-align: left"/>
+            <p:commandButton value="Guardar" actionListener="#{articulobean.guardar()}" style="float: right"/>
+        </f:facet>
+        <p:outputLabel value="Codigo" for="input-codigo"/>
+        <p:inputText id="input-codigo" required="true"
+                     value="#{articulobean.articulo.codigo}"/>
+        <p:column/>
+
+        <p:outputLabel value="Codigo De barra" for="input-codigo-barra"/>
+        <p:barcode value="01234567895" type="code39" id="input-codigo-barra" />
+
+        <p:column/>
+        <p:outputLabel value="Descripcion" for="input-descripcion"/>
+        <p:inputText  id="input-descripcion" required="true"
+                      value="#{articulobean.articulo.descripcion}"/>
+        <p:column/>
+
+        <p:outputLabel value="Impuesto" for="input-impuesto"/>
+        <p:inputText    id="input-impuesto" required="true"
+                        value="#{articulobean.articulo.impuesto}"/>
+        <p:column/>
+
+        <p:outputLabel value="Precio Compra" for="input-precio-compra"/>
+        <p:inputText    id="input-precio-compra" required="true"
+                        value="#{articulobean.articulo.preciocompra}"/>
+        <p:column/>
+
+        <p:outputLabel value="Precio Base" for="input-precio-base"/>
+        <p:inputText    id="input-precio-base" required="true"
+                        value="#{articulobean.articulo.preciobase}"/>
+        <p:column/>
+
+        <p:outputLabel value="Proveedor" for="combo-id-proveedor"/>
+        <p:selectOneMenu value="#{articulobean.articulo.idProveedor}" id="combo-id-proveedor"
+                         converter="omnifaces.SelectItemsConverter">
+            <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+            <f:selectItems value="#{proveedorbean.lista}" var="proveedores"
+                           itemLabel="#{proveedores.razonsocial}"
+                           itemValue="#{proveedores}"/>
+        </p:selectOneMenu>
+
+        <p:commandLink oncomplete="PF('wv-dialog-proveedor').show()" immediate="true" >
+            <p:graphicImage width="24" height="24"
+                            name="imagenes/add-icon.png"
+                            style="margin-left: -25px"/>
+        </p:commandLink>
+
+
+        <p:outputLabel value="Marca" for="combo-id-Marca"/>
+        <p:selectOneMenu id="combo-id-Marca"
+                         converter="omnifaces.SelectItemsConverter">
+            <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+            <f:selectItems var="marcas"/>
+        </p:selectOneMenu>
+
+
+        <p:commandLink oncomplete="PF('wv-dialog-marca').show()" immediate="true" >
+            <p:graphicImage library="imagenes" name="add-icon.png" width="24" height="24" style="margin-left: -25px"/>
+        </p:commandLink>
+
+
+        <p:outputLabel value="Grupo" for="combo-id-grupo"/>
+        <p:selectOneMenu value="#{articulobean.articulo.idGrupo}" id="combo-id-grupo"
+                         converter="omnifaces.SelectItemsConverter">
+            <p:ajax event="change" update="combo-id-subgrupo id-commandlink-subgrupo"/>
+            <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+            <f:selectItems value="#{grupobean.lista}" var="grupos"
+                           itemLabel="#{grupos.descripcion}"
+                           itemValue="#{grupos}"
+                           />
+        </p:selectOneMenu>
+        <p:commandLink oncomplete="PF('wv-dialog-grupo').show()" immediate="true" >
+            <p:graphicImage library="imagenes" name="add-icon.png" width="24" height="24" style="margin-left: -25px"/>
+        </p:commandLink>
+
+
+        <p:outputLabel value="Sub Grupo" 
+                       for="combo-id-subgrupo"/>
+        <p:selectOneMenu value="#{articulobean.articulo.idGrupo}"
+                         disabled="#{articulobean.articulo.idGrupo eq null}"
+                         id="combo-id-subgrupo"
+                         converter="omnifaces.SelectItemsConverter">
+            <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+            <f:selectItems value="#{subgrupos.lista}" var="subgrupos"
+                           itemLabel="#{subgrupos.descripcion}"
+                           itemValue="#{subgrupos}"
+                           />
+        </p:selectOneMenu>
+        <p:commandLink oncomplete="PF('wv-dialog-subgrupo').show()" id="id-commandlink-subgrupo"
+                       disabled="#{articulobean.articulo.idGrupo eq null}"
+                       immediate="true" >
+            <p:graphicImage library="imagenes" name="add-icon.png" width="24" height="24" style="margin-left: -25px"/>
+        </p:commandLink>
+        <p:outputLabel value="Medida 1"/>
+        <p:inputText    value="#{articulobean.articulo.medida1}"/>
+
+        <p:column/>
+        <p:outputLabel value="Unidad Medida 1"/>
+        <p:inputText    value="#{articulobean.articulo.unidadmedida1}"/>
+
+        <p:column/>
+        <p:outputLabel value="Medida 2"/>
+        <p:inputText    value="#{articulobean.articulo.medida2}"/>
+
+        <p:column/>
+        <p:outputLabel value="Unidad Medida 2"/>
+        <p:inputText    value="#{articulobean.articulo.unidadmedida2}"/>
+
+        <p:column/>
+        <p:outputLabel value="Medida 3"/>
+        <p:inputText    value="#{articulobean.articulo.medida3}"/>
+
+        <p:column/>
+        <p:outputLabel value="Unidad Medida 3"/>
+        <p:inputText    value="#{articulobean.articulo.unidadmedida3}"/>
+
+        <p:column/>
+        <p:outputLabel value="Medida 4"/>
+        <p:inputText    value="#{articulobean.articulo.medida4}"/>
+
+        <p:column/>
+        <p:outputLabel value="Unidad Medida 4"/>
+        <p:inputText    value="#{articulobean.articulo.unidadmedida4}"/>
+
+        <p:column/>
+        <p:outputLabel value="Aplicacion"/>
+        <p:inputText   value="#{articulobean.articulo.aplicacion}" />
+
+        <p:outputLabel value="Estado" for="id-one-status"/>
+        <h:panelGrid columns="2" class="td-padding-0">
+            <p:selectOneRadio id="id-one-status"  
+                              value="#{articulobean.articulo.estado}">
+                <f:selectItem itemLabel="Activo" itemValue="ACTIVO" />
+                <f:selectItem itemLabel="Inactivo" itemValue="INACTIVO"/>
+            </p:selectOneRadio>
+        </h:panelGrid>
+        <p:commandLink oncomplete="PF('wv-dialog-fileupload').show()" immediate="true" id="subir">
+            <h:graphicImage value="#{fileUploadBean.imagenURL}" height="100" width="100"/>    
+        </p:commandLink>
+
+
+        <p:column/>
+        <h:panelGroup/>
+        <h:panelGroup/>
+
+        <f:facet name="footer">
+            <p:commandButton value="Guardar" actionListener="#{articulobean.guardar()}" style="float: right"/>
+        </f:facet>
+    </p:panelGrid>
+
+</ui:composition>

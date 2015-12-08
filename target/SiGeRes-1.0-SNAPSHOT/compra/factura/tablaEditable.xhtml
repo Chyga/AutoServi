@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <p:dataTable id="editablePedido"  
+                 value="#{pedidocomprabean.itemList}" editable="true"
+                 class="class-tabla-editable detail-data"
+                 var="item"
+                 rowIndexVar="linea"
+                 editMode="cell" 
+                 style="margin-bottom:20px">
+
+        <p:ajax event="cellEdit" listener="#{pedidocomprabean.onCellEdit}" 
+                update=":frm-pedido:editablePedido :frm-pedido:header-pedido" />
+
+        <p:column headerText="Id" style="width: 10px">
+
+            <p:outputLabel value="#{item.idArticulo.id}"/>
+
+        </p:column>
+
+        <p:column headerText="Codigo Articulo" style="width: 60px">
+            <p:outputLabel value="#{item.idArticulo.codigo}" />
+        </p:column>
+
+        <p:column headerText="Descripcion" style="width: 200px">
+            <p:outputLabel value="#{item.idArticulo.descripcion}" />
+        </p:column>
+
+        <p:column headerText="Cantidad" style="width: 20px;">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <p:outputLabel value="#{item.cantidad}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputText value="#{item.cantidad}" onkeypress="return validateNumber(event)">
+                        <p:ajax event="change" listener="#{pedidocomprabean.deleteItemLine(item, linea)}"/>
+                        <f:validateLength minimum="1" maximum="3"/>
+                    </p:inputText>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+        <p:column headerText="Precio Unitario" style="width: 50px">
+            <p:cellEditor>
+                
+                <f:facet name="output">
+                    <p:outputLabel value="#{item.idArticulo.preciocompra}">
+                        <f:convertNumber type="currency" currencySymbol="Gs."/>
+                    </p:outputLabel>
+                </f:facet>
+                
+                <f:facet name="input">
+                    <p:inputText value="#{item.idArticulo.preciocompra}" style="width:100%"
+                                 onkeypress="return validateNumber(event)"/>
+                </f:facet>
+                
+            </p:cellEditor>
+        </p:column>
+        
+        <p:column headerText="Total" style="width: 50px">
+            <p:outputLabel value="#{item.cantidad * item.idArticulo.preciocompra}">
+                <f:convertNumber type="currency" currencySymbol="Gs."/>
+            </p:outputLabel>
+        </p:column>
+        
+        <p:column style="width: 10px; text-align: center">
+            <p:commandLink actionListener="#{pedidocomprabean.deleteItem(linea)}" 
+                           update=":frm-pedido:editablePedido :frm-pedido:header-pedido">
+                <p:graphicImage library="imagenes" name="garbage-icon.png" width="24" height="24"/>
+            </p:commandLink>
+
+        </p:column>
+        
+    </p:dataTable>
+
+</ui:composition>

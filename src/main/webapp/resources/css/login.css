@@ -1,0 +1,128 @@
+.ui-outputlabel-rfi{
+    color:brown!important
+}
+.panel-contenedor td, .panel-contenedor tr
+{
+    border-style: none !important;
+    padding: 0px !important
+}
+
+.border-top{
+    width: 100%;
+    height: 50px;
+    background: transparent
+}
+
+.ui-button-text{
+    color: #F2F2F2 !important
+}
+.ui-button-text:hover {
+    color: burlywood !important
+}
+body{
+
+    /* Mozilla Firefox */ 
+    background-image: -moz-linear-gradient(bottom, rgba(230,160,21,0) 0%, rgb(230,160,21) 100%)!important;
+
+    /* Opera */ 
+    background-image: -o-linear-gradient(bottom, rgba(230,160,21,0) 0%, rgb(230,160,21) 100%)!important;
+
+    /* Webkit (Safari/Chrome 10) */ 
+   background-image: -webkit-gradient(linear, bottom, top, color-stop(0, rgba(230,160,21,0)), color-stop(1, rgb(230,160,21)))!important;
+
+    /* Webkit (Chrome 11+) */ 
+    background-image: -webkit-linear-gradient(bottom, #207cca 120%, black 100%)!important;
+
+    /* W3C Markup, IE10 Release Preview */ 
+      background:#cccccc !important;
+
+}
+.ui-panelgrid tr, .ui-panelgrid td {
+    background: none; 
+    border-style: none !important; 
+}
+.ui-panelgrid-cell{
+    margin: 0px !important;
+    padding: 0px !important
+}
+.enlace-registrarse{
+    float: left; 
+    color: white;
+    font-size: 20px;
+}
+
+.imagen-redondeada {
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -khtml-border-radius: 100px;
+    overflow: hidden;
+    float: left;
+}
+.user-cab{
+    position: absolute;
+    top: 10%;
+    left: 45%
+}
+/*estilos placeholders*/
+::-webkit-input-placeholder {
+    color: #036fab;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: #036fab;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: #036fab;  
+}
+
+:-ms-input-placeholder {  
+    color: #036fab;  
+}
+
+/* input text redondeados*/
+input {
+    -moz-border-radius: 10px !important;
+    -webkit-border-radius: 10px!important;
+    border-radius: 10px!important;
+    padding: 0 4px 0 4px!important;
+}
+
+.fondo-new{
+    background: url("#{resource['imagenes/grafico-login.png']}") no-repeat !important;
+}
+.ui-panelgrid.fondo-new {
+    height: 300px !important;
+    width: 600px !important;
+    padding: 0px !important
+}
+.ui-panelgrid.contenido{
+    margin-left: 20px !important
+}
+.ui-panelgrid.contenido td{
+    padding: 10px !important
+}
+.ui-outputlabel{
+    color: white !important
+}
+.login-button{
+    border-radius: 10px;
+}
+.login-button .ui-button-text{
+    color: #036fab !important
+}
+.ui-outputlabel-rfi{
+    color: #036fab!important
+}
+.ui-state-error.not-background{
+    background: transparent !important
+}
+.ui-panelgrid.fondo-new{
+    border-radius: 25px !important;
+    -webkit-box-shadow: 8px 8px 10px #999 !important;
+    -moz-box-shadow: 8px 8px 10px #999 !important;
+    filter: shadow(color=#999999, direction=135, strength=2) !important;
+}

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:form>
+        <p:dialog header="Dialogo Agregar Nuevo SubGrupo" 
+                  class="dialogo"
+                  modal="true"
+                  position="center"
+                  widgetVar="wv-dialog-subgrupo">
+            <p:messages id="mensajes"/>
+            <p:outputLabel value="Los campos (*) son obligatorios" style="margin-left: 30% "/>
+
+            <p:panelGrid class="center-panelgrid border-interno-none" columns="3" style="width: 40%">
+                <f:facet name="header">
+                    <p:outputLabel value="Formulario de Registro de SubGrupo"/>
+                </f:facet>
+
+                <p:outputLabel value="Codigo" for="id-input_codigo_subgrupo"/>
+                <p:inputText id="id-input_codigo_subgrupo" required="true" />
+                <p:column/>
+
+                <p:outputLabel value="Descripcion" for="id-input_descripcion_subgrupo"/>
+                <p:inputText id="id-input_descripcion_subgrupo" required="true"/>
+                <p:column/>
+
+                <p:outputLabel value="Estado" for="id-selectone_estado_subgrupo"/>
+                <h:panelGrid columns="2" class="td-padding-0">
+                    <p:selectOneRadio id="id-selectone_estado_subgrupo" required="true">
+                        <f:selectItem itemLabel="Activo" itemValue="ACTIVO" />
+                        <f:selectItem itemLabel="Inactivo" itemValue="INACTIVO"/>
+                    </p:selectOneRadio>
+                </h:panelGrid>
+                <p:column/>
+                <p:outputLabel value="Pertenece al Grupo" for="id-selectone_grupo"/>
+                <p:selectOneMenu id="id-selectone_grupo"
+                                 converter="omnifaces.SelectItemsConverter">
+                    <f:selectItem itemLabel="Seleccione un Grupo" itemValue="#{null}"/>
+                    <f:selectItems value="#{grupobean.lista}"
+                                   var="grupo"
+                                   itemLabel="#{grupo.descripcion}"
+                                   itemValue="#{grupo}"/>
+                </p:selectOneMenu>
+                <p:commandLink oncomplete="PF('wv-dialog-grupo').show()" immediate="true" >
+                    <p:graphicImage width="24" height="24"
+                                    name="imagenes/add-icon.png"
+                                    style="margin-left: -35px"/>
+                </p:commandLink>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Guardar"
+                                     update=":frm-articulo:combo-id-subgrupo mensajes"/>
+                </f:facet>
+            </p:panelGrid>
+        </p:dialog>
+    </h:form>
+</ui:composition>

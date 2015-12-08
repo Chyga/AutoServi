@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <p:dialog header="#{pedidocomprabean.pedidoCompraDetalle.idArticulo.descripcion}"
+              id="dialog-cantidad"
+              class="dialogo-cantidad"
+              widgetVar="wv-dialog-cantidad">
+
+       <p:ajax event="close" listener="#{pedidocomprabean.agregarDetalle(true)}"
+                update=":frm-pedido:editablePedido :frm-pedido:pPedido" /> 
+
+        <h:form id="frm-cantidad">
+            <p:messages autoUpdate="true"/>
+            <p:panelGrid>
+                <p:inputText value="#{pedidocomprabean.pedidoCompraDetalle.cantidad}"
+                             onkeypress="return validateNumber(event);" 
+                             onfocus="this.select()">
+                    <p:ajax event="change"
+                            oncomplete="PF('wv-dialog-cantidad').hide()"/>
+                    <p:ajax event="blur" oncomplete="PF('wv-dialog-cantidad').hide()"/>
+                </p:inputText>
+                <p:commandButton value="Ok" actionListener="#{pedidocomprabean.agregarDetalle(true)}"
+                                 oncomplete="PF('wv-dialog-cantidad').hide()"
+                                 update=":frm-pedido:editablePedido :frm-pedido:pPedido"/>
+            </p:panelGrid>
+
+        </h:form>
+    </p:dialog>
+</ui:composition>

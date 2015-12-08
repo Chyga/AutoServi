@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <p:growl autoUpdate="true"/>
+
+    <h:form>
+        <p:dialog header="DEPARTAMENTO"
+                  class="dialogo"
+                  modal="true"
+                  widgetVar="wv-dialog-departamento"
+                  closeOnEscape="true">
+            <p:panelGrid columns="2"
+                         class="sombra center-panelgrid">
+                <f:facet name="header">
+                    <p:outputLabel value="#{departamentobean.editando ? 'EDITANDO DEPARTANENTO' : 'INFORMACION DE DEPARTAMENTO'}"/>
+                </f:facet>
+
+
+
+                <p:panelGrid class="panel-contenedor">
+
+                    <p:row>
+                        <p:column>
+                            <p:outputLabel value="Descripcion departamento" for="departamento-descripcion"/>
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="departamento-descripcion" value="#{departamentobean.departamento.descripcion}"/>
+                        </p:column>
+                        <p:column>
+                            <p:message for="departamento-descripcion"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <p:outputLabel value="Estado departamento" for="departamento-estado"/>
+                        </p:column>
+                        <p:column>
+                            <p:selectOneMenu required="true" id="departamento-estado" value="#{departamentobean.departamento.estado}"
+                                             style="width: 150px">
+                                <f:selectItem itemLabel="Activo" itemValue="ACTIVO"/>
+                                <f:selectItem itemLabel="Inactivo" itemValue="INACTIVO"/>
+                            </p:selectOneMenu>
+                        </p:column>
+                        <p:column>
+                            <p:message for="departamento-estado"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+                <f:facet name="footer">
+                    <p:commandButton value="cancelar"
+                                     oncomplete="PF('wv-dialog-departamento').hide()"
+                                     immediate="true"/>
+                    <p:commandButton update="@form :frm-proveedor"
+                                     value="Guardar"
+                                     oncomplete="PF('wv-dialog-departamento').hide()"
+                                     action="#{departamentobean.listarCombo(true)}"
+                                     actionListener="#{departamentobean.guardar()}"/>
+                </f:facet>
+            </p:panelGrid>
+        </p:dialog>
+    </h:form>
+
+</ui:composition>

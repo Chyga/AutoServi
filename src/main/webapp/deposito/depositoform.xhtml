@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>Deposito</title>
+        <f:metadata>
+            <o:viewParam name="deposito" value="#{depositobean.deposito}"/>
+        </f:metadata>
+    </h:head>
+
+    <body>
+        <ui:composition template="./../templates/principal.xhtml">
+            <ui:define name="content">  
+                <p:growl autoUpdate="true"/>
+
+                <h:form>
+                    <p:panelGrid columns="2" class="center-panelgrid sp-tabla panel-contenedor">
+                        <f:facet name="header">
+                            <p:outputLabel value="#{depositobean.editando ? 'EDITANDO DEPOSITO' : 'INFORMACION DE DEPOSITO'}"/>
+                        </f:facet>
+
+                        <p:panelGrid class="deposito-guardar border-interno-none">
+                            <p:graphicImage name="imagenes\deposito.png"/>
+                        </p:panelGrid>
+
+                        <p:panelGrid class="deposito-guardar border-interno-none panel-contenedor"
+                                     styleClass="size-components">
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Descripcion deposito" for="deposito-descripcion"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="deposito-descripcion" value="#{depositobean.deposito.descripcion}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:message for="deposito-descripcion"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Estado deposito" for="deposito-estado"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneMenu required="true" id="deposito-estado" value="#{depositobean.deposito.estado}">
+                                        <f:selectItem itemLabel="Activo" itemValue="ACTIVO"/>
+                                        <f:selectItem itemLabel="Inactivo" itemValue="INACTIVO"/>
+                                    </p:selectOneMenu>
+                                </p:column>
+                                <p:column>
+                                    <p:message for="deposito-estado"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column colspan="3">
+                                    <p:commandButton value="Guardar" 
+                                                     actionListener="#{depositobean.guardar}"
+                                                     class="save-button"
+                                                     style="float: right"/>
+                                </p:column>
+                            </p:row>
+                        </p:panelGrid>
+                    </p:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

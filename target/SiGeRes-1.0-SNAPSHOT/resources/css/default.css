@@ -1,0 +1,413 @@
+/*Aplicar estilo para centrar*/
+
+.center-panelgrid, .centrar{
+    margin-left: auto !important;
+    margin-right:auto !important;
+}
+/*facet name = "header" class="panel-grid-facet-header"*/
+.panel-grid-facet-header thead td,.panel-grid-facet-header tfoot td{
+    //background-image: -webkit-linear-gradient(bottom,#610B0B 30%, #B40431 50%)!important;;
+    padding: 5px !important
+}
+.panel-grid-padding td{
+    padding: 15px !important
+}
+.panel-grid-sin-borde tr,.panel-grid-sin-borde td{
+    border-style: none!important
+}
+.border-interno-none td{
+    border-style: none!important
+}
+.padding-size .ui-panelgrid-cell{
+    padding: 8px !important
+}
+.fondo-celdas tbody{
+    background: url("#{resource['imagenes/wallpaper-purple.jpg']}") no-repeat !important;
+}
+.ui-icono-show-columns{
+    background: url("#{resource['imagenes/column_tree.png']}") !important;
+}
+.ui-widget-header > button#columns-select {
+    display: inline-block !important;
+    float: left!important
+}
+
+.ui-datatable-header{
+    overflow: auto!important
+}
+.compra .ui-datatable-header{
+    background: transparent !important;
+}
+.compra .ui-datatable{
+    width: 60% !important;
+    background: none !important;
+}
+
+/*tooltip*/
+div#tooltip:hover:before {
+    content: attr(title);
+    position: absolute;
+    padding: 5px 10px;
+    margin: -3px 0 0 48px;
+    background: orange;
+    color: white;
+    border-radius: 3px;
+}
+
+div#tooltip:hover:after {
+    content: '';
+    position: absolute;
+    margin: -20px 0 0 20px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-right: 10px solid orange;
+    border-bottom: 5px solid transparent;
+}
+div#tooltip{
+    float: left!important
+}
+.float-right{
+    float: right!important;
+}
+.float-left{
+    float: left!important;
+}
+
+.sombra{
+    -webkit-box-shadow: 2px 2px 5px #999!important;
+    -moz-box-shadow: 2px 2px 5px #999!important;
+}
+.sp-tabla td{
+    border-bottom: 1px solid white !important;
+    border-bottom-style: dotted !important
+}
+
+/*dialogo*/
+.dialogo.ui-dialog{
+    width: auto !important
+}
+.dialogo .ui-dialog-titlebar{
+    background:none!important;
+    color:#142F54 !important;
+}
+.dialogo .ui-dialog-content{
+    background:none!important;
+}
+.dialogo-cantidad.ui-dialog{
+    width: auto !important
+}
+.dialogo-cantidad .ui-dialog-titlebar{
+    background:#142F54!important;
+    color:#EFEFFB !important;
+}
+.dialogo-ajax .ui-dialog-titlebar{
+    background: none !important
+}
+/*TRANSPARENTE*/
+.transparency .ui-dialog-content, 
+.transparency .ui-dialog, 
+.transparency .ui-dialog-titlebar{
+    background: none !important
+}
+/* -------------------------*/
+
+/*datatable*/
+.estilo-data-table.ui-datatable-header {
+    overflow: auto!important;
+}
+.estilo-data-table .ui-datatable-header{
+    background-image: -webkit-linear-gradient(bottom,#610B0B 30%, #B40431 50%)!important;
+    background:#142F54 !important
+}
+.estilo-data-table .ui-datatable-tablewrapper td{
+    padding: 2px !important
+}
+.estilo-data-table .ui-datatable-tablewrapper th{
+    padding: 5px !important;
+}
+.estilo-data-table .input-descripcion > input{
+    width: 350px !important
+}
+.estilo-data-table.ui-datatable, .detail-data thead th{
+    background: none!important;
+}
+.detail-data .ui-widget-content{
+    background: transparent !important
+}
+
+.estilo-data-table thead th{
+    //general
+    background-image: -webkit-linear-gradient(bottom, #207cca 30%, black 100%)!important;
+    text-align: center !important
+}
+/*---------------------------------*/
+
+/*fondo panelgrid*/
+.header-panelgrid-fondo thead td{
+    background:#142F54 !important;
+    padding: 3px !important
+}
+.header-panelgrid-fondo tfoot td{
+    background-image: -webkit-linear-gradient(bottom,#610B0B 30%, #B40431 50%)!important;
+    padding: 3px !important
+}
+.cell-fondo.ui-panelgrid tr td {
+    background-image: -webkit-linear-gradient(bottom, #207cca 30%, black 100%)!important;
+}
+.cell-fondo .ui-panelgrid-cell{
+    text-align: center !important
+}
+/*-------------------------*/
+
+/*filtro selectonemenu*/
+.ui-selectonemenu-filter-container .ui-inputtext{
+    width: 300px !important;
+    background:none !important;
+    color: #EFEFFB!important;
+}
+
+/*fondo calendario*/
+.ui-datepicker-calendar th{
+    background: #C14800 !important
+}
+
+/*ajax loader*/
+.ajax-status{
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    display: none;
+}
+
+/*muy especifico para el fondo del articuloform*/
+.fondo-registro-articulo{
+    background: url("#{resource['imagenes/load-articulo.png']}") no-repeat right bottom !important
+}
+
+/*Position botones*/
+.ui-panelgrid-cell .boton-centrar{
+    float: left !important
+}
+
+/*componente inputtext del panelgrid proveedorform*/
+.component-tabla-proveedor input{
+    width: 100px !important
+}
+
+/*cabecera panel grid general*/
+.ui-panelgrid thead, .ui-panelgrid tfoot{
+    background-image: -webkit-linear-gradient(bottom,#610B0B 30%, #B40431 50%)!important;
+    background:#142F54 !important
+}
+.ui-panelgrid thead button, .ui-panelgrid tfoot button{
+    float: right !important
+}
+.ui-panelgrid > thead > tr > td{ 
+    height: 50px !important
+}
+
+/*todos los botones*/
+.ui-button { 
+    color:#050 !important; 
+    font: bold 100% 'trebuchet ms',helvetica,sans-serif!important; 
+    border-radius: 10px !important;
+    text-transform: capitalize !important
+} 
+
+/*flotar a la izquierda*/
+.float-left{
+    float: left !important
+}
+
+/*dimensiones de cada componente, a todos los componentes*/
+.dimensiones-componentes .ui-widget{
+    width: 150px !important
+}
+
+/*Especifico para checkbox*/
+.dimensiones-componentes .ui-widget .ui-radiobutton-box {
+    width: 15px !important
+}
+.dimensiones-componentes .ui-widget .ui-radiobutton {
+    width: 15px !important
+}
+
+/*espacio de 0px el las celdas*/
+.td-padding-0 td{
+    padding: 0px !important
+}
+
+/*margen*/
+.margen{
+    padding: 0px !important;
+    margin: 0px !important
+}
+
+/*
+    tamaño de los componentes
+    not(clase) aplicar estilo a todas las clases menos a
+    la que se encuentra dentro del parentesis
+*/
+.size-components.ui-panelgrid .ui-widget:not(.no-apply-size-components){
+    width: 250px !important
+}
+
+/*
+    Aplicar a las tablas para
+    quedar sin borde
+*/
+.sin-borde td{
+    border-style: none !important
+}
+
+/*
+    layout clientes
+*/
+.menu-vertical.ui-menu{
+    background: none !important;
+    border-style: none !important;
+    width: 150px !important;
+
+}
+.ui-menu-list{
+    padding: 0px !important;
+}
+.menu-vertical .ui-menuitem-link{
+    background: #990000 !important;
+    height: 30px !important;
+    padding: 10px !important;
+    border-bottom: 1px solid #00425B !important;
+    border-radius: 15px 15px 15px 15px !important;
+}
+
+.menu-vertical .ui-menuitem-text{
+    color: white !important;
+    font-size: 20px !important;
+}
+.menu-vertical .ui-menuitem-link span{
+    margin: 5% auto auto 15px!important
+}
+
+.ui-layout-west{
+    border-style: none !important;
+}
+.ui-layout-center{
+    position: absolute !important;
+    height: 450px !important;
+    overflow:visible !important;
+    padding: 5px !important;
+    border: 0px !important;
+    border-left: 3px solid #A4A4A4 !important
+
+}
+.ui-layout-unit-content{
+    overflow: hidden !important
+}
+
+.data-table-user a:hover{
+    color: #696 !important;
+    text-decoration: underline !important
+}
+.gradiente-color-body{
+
+    background:transparent !important
+}
+body{
+    margin: 0px !important;
+}
+
+.gradiente-color{
+    //background-image: -webkit-linear-gradient(bottom, #207cca 30%, black 100%)!important;
+}
+.menu-vertical .ui-menuitem-link{
+    background-image: -webkit-linear-gradient(bottom,#610B0B 30%, #B40431 50%)!important;
+}
+.contorno .ui-outputlabel{
+    background-image: none!important;
+}
+.ui-outputlabel, .ui-selectoneradio label {
+    color: #00425B !important
+}
+thead .ui-outputlabel, tfoot .ui-outputlabel{
+    color:#EFEFFB !important
+}
+.welcomme-page{
+    width: 100%;
+    height: 450px;
+    background: url("#{resource['imagenes/home.jpg']}") !important;
+}
+.ui-panelgrid-footer{
+    overflow: hidden!important
+}
+
+/*tab view*/
+.tab-view-cliente .ui-tabs-nav{
+    background: none !important
+}
+.tab-view-cliente .ui-tabs-panels{
+    border: 1px solid blue !important;
+    width: 500px !important;
+    overflow: visible !important
+}
+.tab-view-cliente .ui-panelgrid {
+    overflow: scroll!important
+}
+
+/*probando propiedades para el datatable*/
+/*datatable*/
+.estilo-data-table-2.ui-datatable-header {
+    overflow: auto!important;
+}
+.estilo-data-table-2 .ui-datatable-header{
+    background:#142F54 !important
+}
+.estilo-data-table-2 .ui-datatable-tablewrapper td{
+    padding: 2px !important
+}
+.estilo-data-table-2 .ui-datatable-tablewrapper th{
+    padding: 5px !important;
+}
+.estilo-data-table-2 .input-descripcion > input{
+    width: 350px !important
+}
+.estilo-data-table-2.ui-datatable, .detail-data thead th{
+    background: none!important;
+}
+
+.estilo-data-table-2 thead .ui-filter-column{
+    //general
+    background:#142F54 !important;
+}
+.estilo-data-table-2 th{
+    background: #142F54!important;
+    color: whitesmoke !important
+}
+.ui-selectmanycheckbox td{
+    padding: 2px !important;
+    border-style: none !important
+}
+.ui-selectmanycheckbox label{
+    text-transform: capitalize !important
+}
+.perimetro-border tbody{
+    border: 1px solid black !important;
+}
+
+.dialogo-confirmar-logout .ui-dialog-titlebar{
+    background: #142F54!important;
+}
+.dialogo-confirmar-logout .ui-dialog-buttonpane{
+    padding: 0px !important; 
+}
+.dialogo-confirmar-logout .ui-dialog-buttonpane button{
+    margin: auto !important; 
+}
+.dialogo-confirmar-logout .ui-dialog-content{
+    border: 0px !important;
+}
+.dialogo-confirmar-logout .ui-confirm-dialog-severity{
+    background: url("#{resource['imagenes/config-all.png']}") no-repeat !important;
+    width: 24px!important;
+    height: 24px!important;
+}

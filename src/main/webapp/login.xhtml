@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Login</title>
+        <h:outputStylesheet library="css" name="login.css"/>
+    </h:head>
+    <h:body>
+        <div class="border-top">
+
+        </div>
+        <h:form>
+            <p:growl autoUpdate="true"/>
+
+            <p:panelGrid style="margin: 10% 0 0 26%; width: 40%;" columns="3"
+                         class="panel-contenedor fondo-new">
+                <p:panelGrid columns="3" class="contenido">
+                    <p:outputLabel value="Codigo" for="input-nombre"
+                                   class="not-background"/>
+                    <p:inputText id="input-nombre" required="true" 
+                                 value="#{loginControlador.user.codigo}"
+                                 requiredMessage="Valor en Usuario no debe ser nulo"/>
+                    <p:message for="input-nombre" display="icon"/>
+
+                    <p:outputLabel value="Password" for="input-password" class="not-background"/>
+                    <p:password id="input-password" required="true"
+                                value="#{loginControlador.user.clave}"
+                                requiredMessage="Valor en Password no debe ser nulo"/>
+                    <p:message for="input-password" display="icon"/>
+
+                    <p:commandButton value="Login" class="login-button" 
+                                     update="@form" actionListener="#{loginControlador.loguear}"
+                                     oncomplete="login(xhr, status, args)">
+                        <p:effect type="pulsate" event="click"/>
+                    </p:commandButton>
+                </p:panelGrid>
+
+            </p:panelGrid>
+
+        </h:form>
+
+    </h:body>
+    <script type="text/javascript">
+
+        function login(xhr, status, args) {
+
+            if (args.logeado) {
+                setTimeout(function () {
+                    window.location = 'templates/principal.xhtml';
+                }, 500);
+            }
+        }
+    </script>
+</html>
+

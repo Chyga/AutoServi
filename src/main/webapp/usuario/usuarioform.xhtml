@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Usuario</title>
+    </h:head>
+
+    <body>
+        <ui:composition template="./../templates/principal.xhtml">
+            <ui:define name="content">  
+                <p:growl autoUpdate="true"/>
+
+                <f:event type="preRenderView" listener="#{tipousuariobean.listarCombo(false)}" />
+                <f:event type="preRenderView" listener="#{depositobean.listarCombo(false)}" />
+
+                <h:form>
+                    <p:panelGrid
+                        class="sp-tabla sombra center-panelgrid"
+                        style="margin-left: 25%;">
+
+                        <f:facet name="header">
+                            <p:row>
+                                <p:column class="cab-button" colspan="3">
+                                    <p:outputLabel value="Registar Usuario" style="float: left"/>
+                                    <p:commandLink actionListener="#{usuarioBean.guardar}" title="Guardar datos del usuario">
+                                        <p:graphicImage name="imagenes\iconos\save_image32x32.png" 
+                                                        width="32" height="32"
+                                                        style="float: right"/>
+                                    </p:commandLink>
+                                    <p:link outcome="/usuario/usuario.xhtml" title="Consultar Usuario">
+                                        <p:graphicImage name="imagenes\manage-table.png" 
+                                                        width="32" height="32"
+                                                        style="float: right"/>
+                                    </p:link>
+
+                                </p:column>
+                            </p:row>
+                        </f:facet>
+
+                        <p:row>
+
+                            <p:column>
+                                <p:graphicImage width="128" height="128"
+                                                name="imagenes/upload-in-database.png"/>
+                            </p:column>
+
+                            <p:column class="tab-view-space">
+
+                                <p:tabView>
+
+                                    <p:tab title="Detalles Estandar">
+
+                                        <ui:include src="/WEB-INF/templates/usuario/detalles-usuario.xhtml"/>
+
+                                    </p:tab>
+
+                                    <p:tab title="Avanzado">
+
+                                        <ui:include src="/WEB-INF/templates/usuario/atributos-usuario.xhtml"/>                              
+
+                                    </p:tab>
+
+                                </p:tabView>
+
+                            </p:column>
+
+                        </p:row>
+                        <f:facet name="footer">
+                            <p:row>
+                                <p:column class="cab-button" colspan="3">
+                                    <p:commandLink actionListener="#{usuarioBean.guardar}">
+                                        <p:graphicImage name="imagenes\iconos\save_image32x32.png" 
+                                                        width="32" height="32"
+                                                        style="float: right"/>
+                                    </p:commandLink>
+
+                                </p:column>
+                            </p:row>
+                        </f:facet>
+
+                    </p:panelGrid>
+
+                </h:form>
+          
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

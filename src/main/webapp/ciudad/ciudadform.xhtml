@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>Ciudad</title>
+        <f:metadata>
+            <o:viewParam name="ciudad" value="#{ciudadbean.ciudad}"/>
+        </f:metadata>
+    </h:head>
+
+    <body>
+        <ui:composition template="./../templates/principal.xhtml">
+            <ui:define name="content">  
+                <f:event type="preRenderView" listener="#{departamentobean.listarCombo(false)}" />
+                <p:growl autoUpdate="true"/>
+
+                <h:form>
+                    <p:panelGrid columns="2" class="center-panelgrid size-components">
+                        <f:facet name="header">
+                            <p:outputLabel value="#{ciudadbean.editando? 'EDITANDO CIUDAD' : 'INFORMACION DE CIUDAD'}"/>
+                        </f:facet>
+
+                        <p:panelGrid class="ciudad-guardar sin-borde center-panelgrid">
+                            <p:graphicImage name="imagenes\city.png"/>
+                        </p:panelGrid>
+
+                        <p:panelGrid class="ciudad-guardar
+                                     border-interno-none panel-contenedor">
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Descripcion ciudad" for="ciudad-descripcion"/>
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="ciudad-descripcion" value="#{ciudadbean.ciudad.descripcion}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:message for="ciudad-descripcion"/>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Departamento " for="id-combo-departamento"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneMenu required="true" id="id-combo-departamento" value="#{ciudadbean.ciudad.idDepartamento}" 
+                                                     converter="omnifaces.SelectItemsConverter">
+                                        <f:selectItem itemLabel="Seleccionar" itemValue="#{null}" noSelectionOption="true"/>
+                                        <f:selectItems value="#{departamentobean.lista}" var="departamentos"
+                                                       itemLabel="#{departamentos.descripcion}"
+                                                       itemValue="#{departamentos}"
+                                                       />
+                                    </p:selectOneMenu>
+                                </p:column>
+
+                                <p:column>
+                                    <p:message for="id-combo-departamento"/>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Estado ciudad" for="ciudad-estado"/>
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneMenu required="true" id="ciudad-estado" value="#{ciudadbean.ciudad.estado}"
+                                                     style="width: 150px">
+                                        <f:selectItem itemLabel="Activo" itemValue="ACTIVO"/>
+                                        <f:selectItem itemLabel="Inactivo" itemValue="INACTIVO"/>
+                                    </p:selectOneMenu>
+                                </p:column>
+                                <p:column>
+                                    <p:message for="ciudad-estado"/>
+                                </p:column>
+                            </p:row>
+                            <f:facet name="footer">
+                                <p:row>
+                                    <p:column colspan="3">
+                                        <p:commandButton value="Guardar"
+                                                         style="float: right"
+                                                         class="no-apply-size-components"
+                                                         actionListener="#{ciudadbean.guardar}"/>
+                                    </p:column>
+                                </p:row>
+                            </f:facet>
+
+                        </p:panelGrid>
+                    </p:panelGrid>
+                </h:form>  
+                <p:graphicImage width="100" height="100" cache="false"
+                                value="C:\\dir\\null.png"
+                                alt="Sin imagen"/>
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

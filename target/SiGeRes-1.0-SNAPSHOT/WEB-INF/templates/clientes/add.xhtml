@@ -1,0 +1,108 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <p:panelGrid columns="4" 
+                 class="border-interno-none
+                 center-panelgrid panel-contenedor
+                 padding-size
+                 size-components">
+
+        <f:facet name="header">
+            <p:outputLabel value="Informacion de Registro"/>
+        </f:facet>
+
+        <p:outputLabel value="Codigo"/>
+        <p:inputText value="#{clienteBean.cliente.codigo}"/>
+        
+
+        <p:outputLabel value="Razon Social"/>
+        <p:inputText value="#{clienteBean.cliente.razonSocial}"/>
+       
+
+        <p:outputLabel value="Nombre Contacto"/>
+        <p:inputText value="#{clienteBean.cliente.nombreContacto}"/>
+
+        <p:outputLabel value="Sobre Nombre"/>
+        <p:inputText value="#{clienteBean.cliente.nombreFantasia}">
+            <p:ajax event="change" listener="#{ciudadbean.test()}"/>
+        </p:inputText>
+
+
+        <p:outputLabel value="R.U.C."/>
+        <p:inputMask mask="9999999-9" value="#{clienteBean.cliente.ruc}"/>
+
+        <p:outputLabel value="Direccion"/>
+        <p:inputText value="#{clienteBean.cliente.direccion}"/>
+
+        <p:outputLabel value="Telefono"/>
+        <p:inputText value="#{clienteBean.cliente.telefono}"/>
+
+        <p:outputLabel value="Telefono Movil"/>
+        <p:inputText value="#{clienteBean.cliente.celular}"/>
+
+        <p:outputLabel value="Email"/>
+        <p:inputText value="#{clienteBean.cliente.email}"/>
+
+        <p:outputLabel value="Forma Pago"/>
+        <p:selectOneMenu>
+            <f:selectItem itemValue="#{null}" itemLabel="Forma de Pago"/>
+            <f:selectItem itemValue="CR" itemLabel="Credito"/>
+            <f:selectItem itemValue="CO" itemLabel="FC"/>
+        </p:selectOneMenu>
+
+        <p:outputLabel value="Departamento"/>
+        <p:selectOneMenu value="#{clienteBean.cliente.idDepartamento}"
+                         converter="omnifaces.SelectItemsConverter">
+
+            <p:ajax event="change"
+                    listener="#{ciudadbean.listarComboById(clienteBean.cliente.idDepartamento)}"
+                    process="@this" partialSubmit="true" update="id-selectonemenu-ciudad">
+            </p:ajax>
+            <f:selectItem itemValue="#{null}" itemLabel="Departamento" noSelectionOption="true"/>
+            <f:selectItems value="#{departamentobean.lista}"
+                           var="departamento"
+                           itemLabel="#{departamento.descripcion}"
+                           itemValue="#{departamento}"/>
+
+        </p:selectOneMenu>
+
+        <p:outputLabel value="Ciudad"/>
+        <p:selectOneMenu value="#{clienteBean.cliente.idCiudad}" 
+                         id="id-selectonemenu-ciudad"
+                         converter="omnifaces.SelectItemsConverter">
+            <f:selectItem itemValue="#{null}" itemLabel="Ciudad" noSelectionOption="true"/>
+            <f:selectItems value="#{ciudadbean.lista}"
+                           var="ciudad"
+                           itemLabel="#{ciudad.descripcion}"
+                           itemValue="#{ciudad}"/>
+        </p:selectOneMenu>
+
+        <p:outputLabel value="Lista Precio"/>
+        <p:selectOneMenu>
+            <f:selectItem itemValue="#{null}" itemLabel="Lista Precio"/>
+        </p:selectOneMenu>
+
+        <p:outputLabel value="Limite de Credito"/>
+        <p:inputText value="#{clienteBean.cliente.limiteCredito}"/>
+
+        <p:outputLabel value="Estado"/>
+        <p:selectOneMenu value="#{clienteBean.cliente.estado}">
+            <f:selectItem itemValue="#{null}" itemLabel="Estado"/>
+            <f:selectItem itemValue="ACTIVO" itemLabel="Activo"/>
+            <f:selectItem itemValue="INACTIVO" itemLabel="Inactivo"/>
+        </p:selectOneMenu>
+
+   
+        <f:facet name="footer">
+            <p:commandButton value="guardar"
+                             class="save-button"
+                             update="@form"
+                             actionListener="#{clienteBean.guardar()}"
+                             />
+        </f:facet>
+    </p:panelGrid>
+
+</ui:composition>
